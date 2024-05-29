@@ -5,14 +5,13 @@ public class Jugador_Movimiento : MonoBehaviour
 {
     private float ejeX = 0f;
     private float ejeZ = 0f;
-
+    
     Animator animator;
     [SerializeField] private float velocidad;
 
     public Joystick joystick;
     public Button disparar;
     public ParticleSystem particulas;
-
     private Rigidbody rb;
 
     private void Start()
@@ -21,10 +20,7 @@ public class Jugador_Movimiento : MonoBehaviour
         disparar.onClick.AddListener(Disparar);
         animator = GetComponent<Animator>();
     }
-    private void Update()
-    {
-       
-    }
+
     private void FixedUpdate()
     {
         Moverse();
