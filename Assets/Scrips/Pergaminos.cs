@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pergaminos : MonoBehaviour
 {
-    string titulo;
-    string descripcion;
+    public string titulo;
+    public string descripcion;
+
 
     GetDatos datos;
 
@@ -18,18 +17,23 @@ public class Pergaminos : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            int r = Random.Range(0, datos.conceptosArray.Length);
-            titulo = datos.conceptosArray[r].titulo;
-            descripcion = datos.conceptosArray[r].descripcion;
-            Debug.Log(descripcion);
+            #region Anterior
+            //int r = Random.Range(0, datos.conceptosArray.Length);
+            //titulo = datos.conceptosArray[r].titulo;
+            //descripcion = datos.conceptosArray[r].descripcion;
+            //Debug.Log(descripcion);
 
             //Activar en gamemanager pergaminoUI
+
+            ////Pasarle textos descripcion y titulo
+            ///
+            #endregion
+
             GameManager.Instance.pergaminoUi.SetActive(true);
             GameManager.Instance.pergaminoTitulo.text = titulo;
             GameManager.Instance.pergaminoDescripcion.text = descripcion;
-
-            Destroy(gameObject);
-            //Pasarle textos descripcion y titulo
-        }   
+            GameManager.Instance.pergaminosRecolectados++;
+            Destroy(this.gameObject);
+        }
     }
 }
