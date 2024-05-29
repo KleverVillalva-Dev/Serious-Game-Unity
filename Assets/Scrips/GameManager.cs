@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static GetDatos;
 
 public class GameManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    [SerializeField] public GameObject pergaminoUi;
+    [SerializeField] public GameObject pergaminoUi; //Se activa para
     [SerializeField] public TextMeshProUGUI pergaminoTitulo;
     [SerializeField] public TextMeshProUGUI pergaminoDescripcion;
 
@@ -72,9 +73,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    //Funciones botones
     public void BotonVolverUIPergamino()
     {
         pergaminoUi.SetActive(false);
+    }
+
+    public void ReiniciarEscena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
