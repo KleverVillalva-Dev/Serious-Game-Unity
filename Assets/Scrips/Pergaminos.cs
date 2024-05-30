@@ -29,10 +29,10 @@ public class Pergaminos : MonoBehaviour
             ///
             #endregion
 
-            GameManager.Instance.pergaminoUi.SetActive(true);
-            GameManager.Instance.pergaminoTitulo.text = titulo;
-            GameManager.Instance.pergaminoDescripcion.text = descripcion;
-            GameManager.Instance.pergaminosRecolectados++;
+            NivelManager.Instance.pergaminoUi.SetActive(true);
+            NivelManager.Instance.pergaminoTitulo.text = titulo;
+            NivelManager.Instance.pergaminoDescripcion.text = descripcion;
+            NivelManager.Instance.pergaminosRecolectados++;
             Destroy(this.gameObject);
         }
     }

@@ -8,12 +8,10 @@ public class Matraz : MonoBehaviour
     private bool exploto = false;
     private void OnCollisionEnter(Collision collision)
     {
-;
         if (!exploto)
         {
             exploto = true;
             Instantiate(explocionParticulas, transform.position, Quaternion.identity);
-            Debug.Log("Collision");
             Destroy(gameObject);
         }
     }

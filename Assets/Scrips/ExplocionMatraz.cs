@@ -9,7 +9,7 @@ public class ExplocionMatraz : MonoBehaviour
     {
         if (other.CompareTag("Virus"))
         {
-            GameManager.Instance.virusMatados ++;
+            NivelManager.Instance.virusMatados ++;
             Destroy(other.gameObject);
         }
     }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Virus
+  - Check
   layers:
   - Default
   - TransparentFX

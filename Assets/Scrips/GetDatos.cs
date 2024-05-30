@@ -2,14 +2,12 @@ using UnityEngine.Networking;
 using UnityEngine;
 using System.Collections;
 using SimpleJSON;
-using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
 
 public class GetDatos : MonoBehaviour
 {
     #region Singletone
-       public static GetDatos instance;
+    public static GetDatos instance;
     private void Awake()
     {
         if(instance != null)
@@ -19,6 +17,7 @@ public class GetDatos : MonoBehaviour
         {
             instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     #endregion
 
@@ -111,7 +110,9 @@ public class GetDatos : MonoBehaviour
             {
                 arrayDiezConceptos[i] = conceptosArray[indices[i]];
 
-                GameManager.Instance.diezConceptosNivel1[i] = arrayDiezConceptos[i];
+                //Re estructurando xxxx
+                //NivelManager.Instance.diezConceptos[i] = arrayDiezConceptos[i];
+                GameManager.instance.diezConceptosNivel1[i] = arrayDiezConceptos[i];
             }
 
             //Revisar que esten los 10 por consola.
