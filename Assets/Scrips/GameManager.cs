@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour
     private string[] descripcionPapiros = new string[10];
 
     public int pergaminosRecolectados;
+    public int virusMatados;
+
     [SerializeField] TextMeshProUGUI tmpPergaminos;
+    [SerializeField] TextMeshProUGUI tmpVirus;
 
     private void Start()
     {       
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         tmpPergaminos.text = pergaminosRecolectados.ToString() + " /10";
+        tmpVirus.text = virusMatados.ToString();
     }
     //Esta coorrunita espera hasta que los conceptos esten cargados para ir a buscar
     // los 10 aleatorios elegidos en GetDatos y preparar la informacion para los papiros.

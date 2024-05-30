@@ -7,10 +7,11 @@ public class VirusComportamiento : MonoBehaviour
     [SerializeField] private float velocidad;
     private string tagJugador = "Player";
     private Transform jugador;
-    [SerializeField] private float distanciaJugador;
-    [SerializeField] private float distanciaMinima;
+    [SerializeField] private float distanciaJugador; //Quitar serializado
+    [SerializeField] private float distanciaMinimaDanio;
+    [SerializeField] private float distanciaMinimaSeguimiento;
 
-    private bool trigerActivado = false;
+    private bool seguirJugador = false;
 
     Jugador_Comportamiento jugadorScript;
 
@@ -22,29 +23,30 @@ public class VirusComportamiento : MonoBehaviour
 
     private void Update()
     {
-        if (jugador != null && trigerActivado)
+        if (jugador != null && seguirJugador)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(jugador.position.x, jugador.position.y + 4, jugador.position.z), velocidad * Time.deltaTime);
         }
         distanciaJugador = Vector3.Distance(transform.position, jugador.position);
-        DistanciaConJugador(); //Cambiar nombre
+        DaniarSiLoToca(); //Cambiar nombre
+        SeguirEnDistanciaMinima();
     }
 
-    private void DistanciaConJugador()
+    private void SeguirEnDistanciaMinima()
+    {
+        if (distanciaJugador <= distanciaMinimaSeguimiento)
+        {
+            seguirJugador = true;
+        }
+    }
+    private void DaniarSiLoToca()
     {
         //Medir distancia con el jugador en todo momento.   
-        if (distanciaJugador <= distanciaMinima)
+        if (distanciaJugador <= distanciaMinimaDanio)
         {
             jugadorScript.vidaActual--;
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(tagJugador))
-        {
-            trigerActivado = true;
-        }
-    }
 }

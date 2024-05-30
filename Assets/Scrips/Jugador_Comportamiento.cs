@@ -97,7 +97,7 @@ public class Jugador_Comportamiento : MonoBehaviour
 
     public void Disparar()
     {
-        if (cDLanzamiento <= 0)
+        if (cDLanzamiento <= 0 && !muerte)
         {
             animator.SetTrigger("Disparar");
             StartCoroutine(SimpleRetraso());
