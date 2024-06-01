@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     // 0 para femenino, 1 para masculino
     public int personajeSeleccionado;
 
-    //Re estructurando xxxx
     public Conceptos[] diezConceptosNivel1 = new Conceptos[10]; //Estos se deben mantener para la evaluacion.
+    public Ejercicio[] diezEjerciciosNivel2 = new Ejercicio[10];
 
 }

@@ -47,13 +47,6 @@ public class NivelManager : MonoBehaviour
     
     private void Start()
     {
-
-
-        //Re estructurando xxxx
-        for (int i = 0; i < diezConceptos.Length; i++) 
-        {
-            diezConceptos[i] = GameManager.instance.diezConceptosNivel1[i];
-        }
         StartCoroutine(SetearDescripcionPapiros());
     }
 
@@ -69,6 +62,11 @@ public class NivelManager : MonoBehaviour
         while (!GetDatos.instance.conceptosCargados)
         {
             yield return null;
+        }
+        //Solo luego de estar cargados continuamos.
+        for (int i = 0; i < diezConceptos.Length; i++)
+        {
+            diezConceptos[i] = GameManager.instance.diezConceptosNivel1[i];
         }
 
         for (int i = 0; i < diezConceptos.Length; i++)
