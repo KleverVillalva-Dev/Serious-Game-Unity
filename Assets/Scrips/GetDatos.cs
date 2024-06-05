@@ -4,6 +4,20 @@ using System.Collections;
 using SimpleJSON;
 using System.Collections.Generic;
 
+/// <summary>
+/// Resumen del funcionamiento.
+/// Este script toma las url de las appis, parsea a json, y de ahi se crean los diferentes objetos
+/// para ser utilizados en el proyecto. El el script claseEjercicio se encuentran
+/// algunas clases que son creadas a partir de json y la base de datos.
+/// Ejercicio es la clase principal, con un array de pciones multiples y una matriz.
+///
+/// Este codigo tiene varias coorrutinas GetDatosAppi... para cada una de las appis, de ahi distribuimos
+/// la informacion a el nivel que sea necesario.
+/// Ya que en el caso especifico de este proyecto, se necesitan 10 ejercicios por nivel, tenemos
+/// la funcion para adjuntar 10 al gamemanager.
+/// </summary>
+
+
 public class GetDatos : MonoBehaviour
 {
     #region Singletone

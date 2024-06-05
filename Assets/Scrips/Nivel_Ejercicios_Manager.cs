@@ -21,11 +21,18 @@ public class Nivel_Ejercicios_Manager : MonoBehaviour
     }
     #endregion
 
-    [Header("Seccion para el UI")]
-    [SerializeField] public GameObject preguntaUi; // Se activa para mostrar info, desde el objeto al tocarlo
-    [SerializeField] public TextMeshProUGUI tmpPregunta;
-    [SerializeField] public TextMeshProUGUI tmpDetalles;
+    [Header("Seccion para el UI en Seleccion Multiple")]
+    [SerializeField] public GameObject preguntaUi_SeleccionMultiple; // Se activa para mostrar info, desde el objeto al tocarlo
+    [SerializeField] public GameObject preguntaUi_Punnett;
+    [SerializeField] public TextMeshProUGUI tmpPregunta_SeleccionMultiple;
+    [SerializeField] public TextMeshProUGUI tmpDetalles_SeleccionMultiple;
     [SerializeField] public TextMeshProUGUI[] textoRespuestas_opciones;
+
+    [Header("Seleccion para el Ui en Punnet")]
+    [SerializeField] public TextMeshProUGUI tmpPregunta_Punnett;
+    [SerializeField] public TextMeshProUGUI tmpDetalles_Punnettt;
+    [SerializeField] public TextMeshProUGUI[] textoRespuestas_Punnett;
+
 
     public Ejercicio[] diezEjercicios = new Ejercicio[10];
 
@@ -62,6 +69,7 @@ public class Nivel_Ejercicios_Manager : MonoBehaviour
             preguntaTxt[i] = diezEjercicios[i].pregunta;
             detallesTxt[i] = diezEjercicios[i].detalles;
 
+                    
             if (diezEjercicios[i].tipo == "Selección Múltiple")
             {
                 for (int j = 0; j < cuatroOpciones.Length; j++)
@@ -71,7 +79,7 @@ public class Nivel_Ejercicios_Manager : MonoBehaviour
             }
             else
             {
-                // Asegúrate de manejar otros tipos de ejercicios aquí si es necesario
+                //  otros tipos de ejercicios aquí 
             }
         }
 

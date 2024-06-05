@@ -61,9 +61,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
       propertyPath: m_MotionVectors
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5581687565373973441, guid: 1ac71621bbad72844808bf66049ee49c, type: 3}
     - target: {fileID: 919132149155446097, guid: 411bf5c4d860bf64fbfe2af3a5d73f3f, type: 3}
       propertyPath: m_Name
       value: pergamino
