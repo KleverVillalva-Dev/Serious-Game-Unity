@@ -1043,6 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fe2f69c221d2045992da2bb05cbb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JuegoEnPausa: 0
   personajeSeleccionado: 0
 --- !u!4 &645267518
 Transform:
@@ -1170,8 +1171,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -306, y: -746}
-  m_SizeDelta: {x: 239.7802, y: 139.3158}
+  m_AnchoredPosition: {x: -307.04504, y: -756}
+  m_SizeDelta: {x: 250.095, y: 103.6305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906314146
 MonoBehaviour:
@@ -1411,7 +1412,7 @@ GameObject:
   - component: {fileID: 1071130636}
   - component: {fileID: 1071130635}
   m_Layer: 0
-  m_Name: NivelManager
+  m_Name: NivelManager_Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2535,7 +2536,7 @@ GameObject:
   - component: {fileID: 1902252087}
   - component: {fileID: 1902252086}
   m_Layer: 5
-  m_Name: Opciones
+  m_Name: Salir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2604,7 +2605,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1902252087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1071130635}
+        m_TargetAssemblyTypeName: MenuPrincipal, Assembly-CSharp
+        m_MethodName: BotonCerrarJuego
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1902252087
 MonoBehaviour:
   m_ObjectHideFlags: 0

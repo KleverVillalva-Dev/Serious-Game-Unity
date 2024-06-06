@@ -41,7 +41,7 @@ public class GetDatos : MonoBehaviour
 
     //Conceptos
     public Conceptos[] conceptosArray;
-    public bool conceptosCargados = false; //Bolleano avisando si estamos cargados
+    public bool conceptosCargados = false; //Boleano avisando si estamos cargados
 
     //Ejercicios
     private Ejercicio[] ejerciciosArray;
@@ -49,7 +49,7 @@ public class GetDatos : MonoBehaviour
     private Ejercicio[] ejerciciosArray_Punnett;
     private Ejercicio[] ejerciciosArray_Multiples;
 
-    public bool ejerciciosCargados = false; //Bolleano avisando si estamos cargados
+    public bool ejerciciosCargados = false; //Boleano avisando si estamos cargados
 
 
     public UnityWebRequest request;
@@ -179,12 +179,13 @@ public class GetDatos : MonoBehaviour
                 {
                     JSONNode item = data[i];
 
+                    //Cambiamos string "tipo" por entero tipo_id, 1 para multiple 2 para punnet.
                     Ejercicio ejercicio = new Ejercicio
                     {
                         ejercicio_id = item["ejercicio_id"].AsInt,
                         pregunta = item["pregunta"],
                         imagen = item["imagen"],  // Almacena la URL de la imagen o null
-                        tipo = item["tipo"],
+                        tipo = item["tipo_id"],
                         detalles = item["detalles"],
                         mostrar_solucion = item["mostrar_solucion"].AsBool,
                         explicacion_solucion = item["explicacion_solucion"]
@@ -243,14 +244,15 @@ public class GetDatos : MonoBehaviour
         List<Ejercicio> punnettList = new List<Ejercicio>();
         List<Ejercicio> multiplesList = new List<Ejercicio>();
 
+        // cambiamos string "tipo" por entero id_tipo, 1 para multiple 2 para punnet
         for (int i = 1; i < ejerciciosArray.Length; i++)
         {
 
-            if (ejerciciosArray[i].tipo == "Punnett")
+            if (ejerciciosArray[i].tipo == 2) //  2"Punnett"
             {
                 punnettList.Add(ejerciciosArray[i]);
             }
-            else if (ejerciciosArray[i].tipo == "Selección Múltiple")
+            else if (ejerciciosArray[i].tipo == 1 ) //"Selección Múltiple"
             {
 
                 multiplesList.Add(ejerciciosArray[i]);

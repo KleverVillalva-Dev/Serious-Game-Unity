@@ -23,7 +23,8 @@ public class VirusComportamiento : MonoBehaviour
 
     private void Update()
     {
-        if (jugador != null && seguirJugador)
+        //Sigue al jugador mientras el juego no este en pausa. Por ahora se pausa unicamente  al abrir pergaminos.
+        if (jugador != null && seguirJugador && !GameManager.instance.JuegoEnPausa)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(jugador.position.x, jugador.position.y + 4, jugador.position.z), velocidad * Time.deltaTime);
         }

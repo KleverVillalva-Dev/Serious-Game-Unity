@@ -3,7 +3,8 @@ public class Ejercicio
     public int ejercicio_id;
     public string pregunta;
     public string imagen;  // Puede ser null
-    public string tipo;
+   //Cambiamos string "tipo" por entero tipo_id, 1 para multiple 2 para punnet.
+    public int tipo;
     public string detalles;
     public bool mostrar_solucion;
     public string explicacion_solucion;

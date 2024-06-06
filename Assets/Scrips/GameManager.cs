@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     #endregion
+    public bool JuegoEnPausa = false;
 
     // 0 para femenino, 1 para masculino
     public int personajeSeleccionado;

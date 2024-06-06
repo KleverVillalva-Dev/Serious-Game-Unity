@@ -18,10 +18,7 @@ public class MenuPrincipal : MonoBehaviour
         }
     }
 
-    public void BotonJugar()
-    {
-        SceneManager.LoadScene("Nivel_1_Conceptos");
-    }
+
 
     public void ActivarTick(GameObject check)
     {
@@ -56,6 +53,19 @@ public class MenuPrincipal : MonoBehaviour
     public void SeleccionarGeneroInt(int genero)
     {
         GameManager.instance.personajeSeleccionado = genero;
+    }
+
+
+    public void BotonJugar()
+    {
+        //SceneManager.LoadScene("Nivel_1_Conceptos");
+        SceneManager.LoadScene("Nivel_2_Ejercicios");
+    }
+
+    public void BotonCerrarJuego()
+    {
+        Debug.Log("El boton funciona");
+        Application.Quit();
     }
 
 }

@@ -23,4 +23,9 @@ public class BotonDispararFillAmout : MonoBehaviour
 
         imagen.fillAmount = cd / cdTotal;
     }
+
+    // Crear pos para instanciar en enivel 2
+
+    //
+
 }

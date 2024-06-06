@@ -1,0 +1,610 @@
+fileFormatVersion: 2
+guid: b684ae794207acb4b941f35663e30dcf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: buildings
+    100002: car_blue
+    100004: car_blue 1
+    100006: car_red
+    100008: car_red 1
+    100010: car_red1
+    100012: car_yellow
+    100014: car_yellow 1
+    100016: cars
+    100018: //RootNode
+    100020: floor
+    100022: foundations
+    100024: grass
+    100026: ground
+    100028: group19
+    100030: group20
+    100032: group21
+    100034: group22
+    100036: group23
+    100038: group23 1
+    100040: group23 2
+    100042: group24
+    100044: group24 1
+    100046: group24 2
+    100048: group25
+    100050: group25 1
+    100052: group25 2
+    100054: group26
+    100056: group26 1
+    100058: group26 2
+    100060: group27
+    100062: group28
+    100064: group29
+    100066: highRise
+    100068: highRise_01
+    100070: highRise_02
+    100072: highRise_03
+    100074: highRise_04
+    100076: highRise_05
+    100078: lowRise
+    100080: lowRise_01
+    100082: lowRise_02
+    100084: lowRise_03
+    100086: lowRise_04
+    100088: lowRise_05
+    100090: lowRise_06
+    100092: midRise
+    100094: midRise_01
+    100096: midRise_02
+    100098: midRise_03
+    100100: midRise_04
+    100102: midRise_05
+    100104: midRise_06
+    100106: park
+    100108: parkingLot
+    100110: pavament
+    100112: pSolid1
+    100114: pSolid10
+    100116: pSolid11
+    100118: pSolid12
+    100120: pSolid13
+    100122: pSolid14
+    100124: pSolid15
+    100126: pSolid2
+    100128: pSolid3
+    100130: pSolid4
+    100132: pSolid5
+    100134: pSolid6
+    100136: pSolid7
+    100138: pSolid8
+    100140: pSolid9
+    100142: roads
+    100144: streetLamps
+    100146: streetLight
+    100148: streetLight 1
+    100150: streetLight 2
+    100152: streetLight 3
+    100154: streetLight 4
+    100156: streetLight 5
+    100158: streetLight 6
+    100160: streetLight 7
+    100162: streetLight 8
+    100164: streetLight1
+    100166: streetLight1 1
+    100168: streetLight1 2
+    100170: streetLight1 3
+    100172: streetLight1 4
+    100174: streetLight1 5
+    100176: streetLight1 6
+    100178: streetLight1 7
+    100180: streetLight1 8
+    100182: streetLight2
+    100184: streetLight2 1
+    100186: streetLight2 2
+    100188: streetLight2 3
+    100190: streetLight2 4
+    100192: streetLight2 5
+    100194: streetLight2 6
+    100196: streetLight2 7
+    100198: streetLight2 8
+    100200: streetLight3
+    100202: streetLight3 1
+    100204: streetLight3 2
+    100206: streetLight3 3
+    100208: streetLight3 4
+    100210: streetLight3 5
+    100212: streetLight3 6
+    100214: streetLight3 7
+    100216: streetLight3 8
+    100218: tree_02
+    100220: tree_03
+    100222: tree_04
+    100224: tree_05
+    100226: trees
+    100228: streetlamps
+    100230: trees 1
+    400000: buildings
+    400002: car_blue
+    400004: car_blue 1
+    400006: car_red
+    400008: car_red 1
+    400010: car_red1
+    400012: car_yellow
+    400014: car_yellow 1
+    400016: cars
+    400018: //RootNode
+    400020: floor
+    400022: foundations
+    400024: grass
+    400026: ground
+    400028: group19
+    400030: group20
+    400032: group21
+    400034: group22
+    400036: group23
+    400038: group23 1
+    400040: group23 2
+    400042: group24
+    400044: group24 1
+    400046: group24 2
+    400048: group25
+    400050: group25 1
+    400052: group25 2
+    400054: group26
+    400056: group26 1
+    400058: group26 2
+    400060: group27
+    400062: group28
+    400064: group29
+    400066: highRise
+    400068: highRise_01
+    400070: highRise_02
+    400072: highRise_03
+    400074: highRise_04
+    400076: highRise_05
+    400078: lowRise
+    400080: lowRise_01
+    400082: lowRise_02
+    400084: lowRise_03
+    400086: lowRise_04
+    400088: lowRise_05
+    400090: lowRise_06
+    400092: midRise
+    400094: midRise_01
+    400096: midRise_02
+    400098: midRise_03
+    400100: midRise_04
+    400102: midRise_05
+    400104: midRise_06
+    400106: park
+    400108: parkingLot
+    400110: pavament
+    400112: pSolid1
+    400114: pSolid10
+    400116: pSolid11
+    400118: pSolid12
+    400120: pSolid13
+    400122: pSolid14
+    400124: pSolid15
+    400126: pSolid2
+    400128: pSolid3
+    400130: pSolid4
+    400132: pSolid5
+    400134: pSolid6
+    400136: pSolid7
+    400138: pSolid8
+    400140: pSolid9
+    400142: roads
+    400144: streetLamps
+    400146: streetLight
+    400148: streetLight 1
+    400150: streetLight 2
+    400152: streetLight 3
+    400154: streetLight 4
+    400156: streetLight 5
+    400158: streetLight 6
+    400160: streetLight 7
+    400162: streetLight 8
+    400164: streetLight1
+    400166: streetLight1 1
+    400168: streetLight1 2
+    400170: streetLight1 3
+    400172: streetLight1 4
+    400174: streetLight1 5
+    400176: streetLight1 6
+    400178: streetLight1 7
+    400180: streetLight1 8
+    400182: streetLight2
+    400184: streetLight2 1
+    400186: streetLight2 2
+    400188: streetLight2 3
+    400190: streetLight2 4
+    400192: streetLight2 5
+    400194: streetLight2 6
+    400196: streetLight2 7
+    400198: streetLight2 8
+    400200: streetLight3
+    400202: streetLight3 1
+    400204: streetLight3 2
+    400206: streetLight3 3
+    400208: streetLight3 4
+    400210: streetLight3 5
+    400212: streetLight3 6
+    400214: streetLight3 7
+    400216: streetLight3 8
+    400218: tree_02
+    400220: tree_03
+    400222: tree_04
+    400224: tree_05
+    400226: trees
+    400228: streetlamps
+    400230: trees 1
+    2100000: lambert1
+    2100002: lambert4
+    2300000: car_blue
+    2300002: car_blue 1
+    2300004: car_red
+    2300006: car_red 1
+    2300008: car_red1
+    2300010: car_yellow
+    2300012: car_yellow 1
+    2300014: foundations
+    2300016: grass
+    2300018: highRise_01
+    2300020: highRise_02
+    2300022: highRise_03
+    2300024: highRise_04
+    2300026: highRise_05
+    2300028: lowRise_01
+    2300030: lowRise_02
+    2300032: lowRise_03
+    2300034: lowRise_04
+    2300036: lowRise_05
+    2300038: lowRise_06
+    2300040: midRise_01
+    2300042: midRise_02
+    2300044: midRise_03
+    2300046: midRise_04
+    2300048: midRise_05
+    2300050: midRise_06
+    2300052: pavament
+    2300054: pSolid1
+    2300056: pSolid10
+    2300058: pSolid11
+    2300060: pSolid12
+    2300062: pSolid13
+    2300064: pSolid14
+    2300066: pSolid15
+    2300068: pSolid2
+    2300070: pSolid3
+    2300072: pSolid4
+    2300074: pSolid5
+    2300076: pSolid6
+    2300078: pSolid7
+    2300080: pSolid8
+    2300082: pSolid9
+    2300084: roads
+    2300086: streetLight
+    2300088: streetLight 1
+    2300090: streetLight 2
+    2300092: streetLight 3
+    2300094: streetLight 4
+    2300096: streetLight 5
+    2300098: streetLight 6
+    2300100: streetLight 7
+    2300102: streetLight 8
+    2300104: streetLight1
+    2300106: streetLight1 1
+    2300108: streetLight1 2
+    2300110: streetLight1 3
+    2300112: streetLight1 4
+    2300114: streetLight1 5
+    2300116: streetLight1 6
+    2300118: streetLight1 7
+    2300120: streetLight1 8
+    2300122: streetLight2
+    2300124: streetLight2 1
+    2300126: streetLight2 2
+    2300128: streetLight2 3
+    2300130: streetLight2 4
+    2300132: streetLight2 5
+    2300134: streetLight2 6
+    2300136: streetLight2 7
+    2300138: streetLight2 8
+    2300140: streetLight3
+    2300142: streetLight3 1
+    2300144: streetLight3 2
+    2300146: streetLight3 3
+    2300148: streetLight3 4
+    2300150: streetLight3 5
+    2300152: streetLight3 6
+    2300154: streetLight3 7
+    2300156: streetLight3 8
+    2300158: tree_02
+    2300160: tree_03
+    2300162: tree_04
+    2300164: tree_05
+    2300166: streetlamps
+    2300168: trees 1
+    3300000: car_blue
+    3300002: car_blue 1
+    3300004: car_red
+    3300006: car_red 1
+    3300008: car_red1
+    3300010: car_yellow
+    3300012: car_yellow 1
+    3300014: foundations
+    3300016: grass
+    3300018: highRise_01
+    3300020: highRise_02
+    3300022: highRise_03
+    3300024: highRise_04
+    3300026: highRise_05
+    3300028: lowRise_01
+    3300030: lowRise_02
+    3300032: lowRise_03
+    3300034: lowRise_04
+    3300036: lowRise_05
+    3300038: lowRise_06
+    3300040: midRise_01
+    3300042: midRise_02
+    3300044: midRise_03
+    3300046: midRise_04
+    3300048: midRise_05
+    3300050: midRise_06
+    3300052: pavament
+    3300054: pSolid1
+    3300056: pSolid10
+    3300058: pSolid11
+    3300060: pSolid12
+    3300062: pSolid13
+    3300064: pSolid14
+    3300066: pSolid15
+    3300068: pSolid2
+    3300070: pSolid3
+    3300072: pSolid4
+    3300074: pSolid5
+    3300076: pSolid6
+    3300078: pSolid7
+    3300080: pSolid8
+    3300082: pSolid9
+    3300084: roads
+    3300086: streetLight
+    3300088: streetLight 1
+    3300090: streetLight 2
+    3300092: streetLight 3
+    3300094: streetLight 4
+    3300096: streetLight 5
+    3300098: streetLight 6
+    3300100: streetLight 7
+    3300102: streetLight 8
+    3300104: streetLight1
+    3300106: streetLight1 1
+    3300108: streetLight1 2
+    3300110: streetLight1 3
+    3300112: streetLight1 4
+    3300114: streetLight1 5
+    3300116: streetLight1 6
+    3300118: streetLight1 7
+    3300120: streetLight1 8
+    3300122: streetLight2
+    3300124: streetLight2 1
+    3300126: streetLight2 2
+    3300128: streetLight2 3
+    3300130: streetLight2 4
+    3300132: streetLight2 5
+    3300134: streetLight2 6
+    3300136: streetLight2 7
+    3300138: streetLight2 8
+    3300140: streetLight3
+    3300142: streetLight3 1
+    3300144: streetLight3 2
+    3300146: streetLight3 3
+    3300148: streetLight3 4
+    3300150: streetLight3 5
+    3300152: streetLight3 6
+    3300154: streetLight3 7
+    3300156: streetLight3 8
+    3300158: tree_02
+    3300160: tree_03
+    3300162: tree_04
+    3300164: tree_05
+    3300166: streetlamps
+    3300168: trees 1
+    4300000: highRise_01
+    4300002: highRise_02
+    4300004: highRise_03
+    4300006: highRise_04
+    4300008: highRise_05
+    4300010: midRise_01
+    4300012: midRise_02
+    4300014: midRise_03
+    4300016: midRise_04
+    4300018: midRise_05
+    4300020: midRise_06
+    4300022: lowRise_01
+    4300024: lowRise_02
+    4300026: lowRise_03
+    4300028: lowRise_04
+    4300030: lowRise_05
+    4300032: lowRise_06
+    4300034: grass
+    4300036: tree_02
+    4300038: tree_03
+    4300040: tree_04
+    4300042: tree_05
+    4300044: pavament
+    4300046: car_red
+    4300048: car_yellow
+    4300050: car_blue
+    4300052: roads
+    4300054: foundations
+    4300056: streetLight3
+    4300058: streetLight1
+    4300060: streetLight
+    4300062: streetLight2
+    4300064: streetLight3
+    4300066: streetLight1
+    4300068: streetLight
+    4300070: streetLight2
+    4300072: streetLight1
+    4300074: streetLight
+    4300076: streetLight3
+    4300078: streetLight2
+    4300080: streetLight3
+    4300082: streetLight1
+    4300084: streetLight
+    4300086: streetLight2
+    4300088: streetLight3
+    4300090: streetLight1
+    4300092: streetLight
+    4300094: streetLight2
+    4300096: streetLight1
+    4300098: streetLight
+    4300100: streetLight3
+    4300102: streetLight2
+    4300104: streetLight3
+    4300106: streetLight1
+    4300108: streetLight3
+    4300110: streetLight1
+    4300112: streetLight1
+    4300114: streetLight3
+    4300116: streetLight
+    4300118: streetLight2
+    4300120: streetLight
+    4300122: streetLight2
+    4300124: streetLight
+    4300126: streetLight2
+    4300128: pSolid1
+    4300130: pSolid2
+    4300132: pSolid3
+    4300134: pSolid4
+    4300136: pSolid5
+    4300138: pSolid6
+    4300140: pSolid7
+    4300142: pSolid8
+    4300144: pSolid9
+    4300146: pSolid10
+    4300148: pSolid11
+    4300150: pSolid12
+    4300152: pSolid13
+    4300154: pSolid14
+    4300156: pSolid15
+    4300158: car_red
+    4300160: car_blue
+    4300162: car_yellow
+    4300164: car_red1
+    4300166: streetlamps
+    4300168: trees
+    7400000: carDrive
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: carDrive
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 239
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.099999994
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

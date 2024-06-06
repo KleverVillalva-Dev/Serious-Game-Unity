@@ -92,6 +92,11 @@ public class Jugador_Comportamiento : MonoBehaviour
 
                 transform.rotation = rotacion;
             }
+        }
+        else
+        {
+            //Re estructurar. hecho para build
+            Nivel_Conceptos_Manager.Instance.ReiniciarEscena();
         }  
     }
 

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nivel_1_Conceptos.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Nivel_2_Ejercicios.unity
+    guid: 2846d749521857a40b644da8e2bb9781
   m_configObjects: {}
