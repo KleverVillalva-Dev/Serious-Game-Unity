@@ -7,11 +7,13 @@ TagManager:
   - Enemy
   - Virus
   - Check
+  - Mountains
+  - Background
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstaculos
   - Water
   - UI
   - 
