@@ -24,7 +24,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     }
     #endregion
     //Respetar pos 0 mujer, pos 1 hombre
-    [SerializeField] GameObject[] personajePrefab;
+    [SerializeField] GameObject[] personajePrefab; // Instanciado desde awake
     [SerializeField] Transform posInstanciarJugador;
 
     [SerializeField] public GameObject pergaminoUi; //Se activa para mostrar los pergaminos

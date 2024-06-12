@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Nivel_Evaluacion_Manager : MonoBehaviour
@@ -12,7 +13,7 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
     private void Awake()
     {
         //Instanciar jugador dependiendo de seleccion
-        //personajePrefab[GameManager.instance.personajeSeleccionado].SetActive(true);
+        personajePrefab[GameManager.instance.personajeSeleccionado].SetActive(true);
 
         if (Instance != null)
         {
@@ -24,7 +25,7 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
         }
     }
     #endregion
-
+    [SerializeField] GameObject[] personajePrefab;
     [SerializeField] Transform posInstanciarJugador;
 
     //Panel de preguntas y respuestas
@@ -44,11 +45,34 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
 
     private int indexPregunta;
 
+    //Para barras de vida
+    private Animator animJugador;
+
+    public Image barraDeVidaJugador;
+    private float vidaMaximaJugador = 3;
+    private float viadaActualJugador;
+
+    //Enemigo
+    private Animator animEnemigo;
+
+    public Image barraDeVidaEnemigo;
+    private float vidaMaximaEnemigo = 7;
+    private float vidaActualEnemigo;
+
     private void Start()
     {
+        viadaActualJugador = vidaMaximaJugador;
+        vidaActualEnemigo = vidaMaximaEnemigo;
+        animJugador = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        animEnemigo = GameObject.FindWithTag("Enemigo").GetComponent<Animator>();
         StartCoroutine(ArrayEvaluacionesDatos());
     }
 
+    private void Update()
+    {
+        barraDeVidaJugador.fillAmount = viadaActualJugador / vidaMaximaJugador;
+        barraDeVidaEnemigo.fillAmount = vidaActualEnemigo / vidaMaximaEnemigo;
+    }
     IEnumerator ArrayEvaluacionesDatos()
     {
         while (!GetDatos.instance.evaluacionCargado)
@@ -90,25 +114,113 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
         }
     }
 
+    bool responde = false;
     private void VerificarRespuesta(int opcionIndex)
     {
-        if (esOpcionCorrecta[indexPregunta, opcionIndex])
+        if (!responde)
         {
-            Debug.Log("¡Respuesta correcta!");
-        }
-        else
-        {
-            Debug.Log("Respuesta incorrecta.");
-        }
+            responde = true;
+            if (esOpcionCorrecta[indexPregunta, opcionIndex])
+            {
+                Debug.Log("¡Respuesta correcta!");
+                StartCoroutine(RespuestaCorrecta());             
+            }
+            else
+            {
+                Debug.Log("Respuesta incorrecta.");
+                StartCoroutine(RespuestaIncorrecta());
+            }
+        }     
     }
 
-    public void Botontest()
+    public void SiguientePregunta()
     {
         indexPregunta++;
         if (indexPregunta >= diezPreguntasEvaluacion.Length)
         {
-            indexPregunta = 0; // Resetea al inicio si se pasa del límite
+            Debug.Log("PasarAlSiguienteNivel");
         }
         SetearPregunta();
+    }
+
+    [SerializeField] TextMeshProUGUI textoSolucion;
+    [SerializeField] GameObject panelSolucion;
+ 
+    public void ActivarPanelSolucion()
+    {
+        textoSolucion.text = explicacionTxt[indexPregunta];
+        panelSolucion.SetActive(true);
+    }
+    public void BotonEntiendo()
+    {
+        panelSolucion.SetActive(false);
+        if (viadaActualJugador <= 0f)
+        {
+            //Reiniciar o hacer algo si muere
+            indexPregunta = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }else if (vidaActualEnemigo <= 0 || indexPregunta > 10)
+        {
+            indexPregunta = 0;
+            SceneManager.LoadScene("Resultados");
+        }
+        else
+        {
+            SiguientePregunta();
+        }
+    }
+    private IEnumerator RespuestaCorrecta()
+    {
+        animJugador.SetTrigger("Disparar");
+        //Lanzar el matraz si queremos
+        yield return new WaitForSeconds(1.5f); //Tiempo mientras se lanza
+        //Anim del enemigo reaccionando al lanzamiento
+        animEnemigo.SetTrigger("Danio");
+        //Bajar vida barra de vida enemigo.
+        vidaActualEnemigo--;
+        if (vidaActualEnemigo <= 0)
+        {
+            animEnemigo.SetTrigger("Muerte");
+            yield return new WaitForSeconds(3);
+            ActivarPanelSolucion();
+
+            responde = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(3);
+            ActivarPanelSolucion();
+
+            responde = false;
+        }
+    }
+
+    private IEnumerator RespuestaIncorrecta()
+    {
+        //Enemigo disparar
+        animEnemigo.SetTrigger("Disparar");
+        //Lanzar el matraz si queremos
+        yield return new WaitForSeconds(1.5f); //Tiempo mientras se lanza
+        animJugador.SetTrigger("Danio");
+        //Anim del jugador reaccionando al lanzamiento
+        animEnemigo.SetTrigger("Burla");
+        //Bajar vida barra de vida del jugador
+
+        viadaActualJugador--;
+        if (viadaActualJugador <= 0f)
+        {
+            animJugador.SetTrigger("Muerte");
+
+            yield return new WaitForSeconds(3);
+            ActivarPanelSolucion();
+
+            responde = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(3);
+            ActivarPanelSolucion();
+            responde = false;
+        }   
     }
 }

@@ -221,7 +221,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             animator.SetTrigger("Bailar");
         }
 
-
         //Reproducir sonido si hay
 
         //Sumar puntos
