@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -111,6 +110,9 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
             TextMeshProUGUI textoBoton = botonesRespuestas[i].GetComponentInChildren<TextMeshProUGUI>();
             textoBoton.text = todasOpciones[indexPregunta, i];
 
+            // Restablecer el color del botón
+            Image botonImagen = botonesRespuestas[i].GetComponent<Image>();
+            botonImagen.color = Color.white; // Color original
 
             #region Debug
             // Log de la opción correcta, borrar esta zona luego de testeo
@@ -132,7 +134,33 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
     {
         if (!responde)
         {
+
             responde = true;
+
+            // Cambiar los colores de los botones según la respuesta correcta o incorrecta
+            for (int i = 0; i < 4; i++)
+            {
+                Image botonImagen = botonesRespuestas[i].GetComponent<Image>();
+                if (esOpcionCorrecta[indexPregunta, i])
+                {
+                    botonImagen.color = Color.green; // Cambia a verde si es correcta
+                }
+                else
+                {
+                    string hexColor = "#8C8C8C";//Color seteado correcto
+                    Color c;
+                    if (ColorUtility.TryParseHtmlString(hexColor, out c))
+                    {
+                        botonImagen.color = c;
+                    }
+                    else
+                    {
+                        Debug.LogError("Error al convertir el color hexadecimal.");
+                    }
+                }
+            }
+
+
             if (esOpcionCorrecta[indexPregunta, opcionIndex])
             {
                 Debug.Log("¡Respuesta correcta!");

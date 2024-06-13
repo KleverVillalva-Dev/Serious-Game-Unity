@@ -1,10 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : MonoBehaviour
 {
     [SerializeField] GameObject canvasSeleccionPersonaje;
+    [SerializeField] GameObject[] personajesUtilidad; //0 femenino 1 masculino
 
+    [SerializeField] TextMeshProUGUI nombrePersonajeTMP;
+    [SerializeField] TextMeshProUGUI rolPersonajeTMP;
+    [SerializeField] TextMeshProUGUI descripcionPersonajeTMP;
+
+    [SerializeField] string[] nombrePersonaje;
+    [SerializeField] string[] rolPersonaje;
+    [SerializeField] string[] descripcionPersonaje;
     
     //Activa o desactiva selector
     public void SelectorPersonaje()
@@ -12,13 +21,12 @@ public class MenuPrincipal : MonoBehaviour
         if (!canvasSeleccionPersonaje.activeSelf)
         {
             canvasSeleccionPersonaje.SetActive(true);
+            SeleccionarGeneroInt(0);
         }else
         {
             canvasSeleccionPersonaje.SetActive(false);
         }
     }
-
-
 
     public void ActivarTick(GameObject check)
     {
@@ -53,6 +61,12 @@ public class MenuPrincipal : MonoBehaviour
     public void SeleccionarGeneroInt(int genero)
     {
         GameManager.instance.personajeSeleccionado = genero;
+        personajesUtilidad[0].SetActive(false);
+        personajesUtilidad[1].SetActive(false);
+        personajesUtilidad[genero].SetActive(true);
+
+        nombrePersonajeTMP.text = nombrePersonaje[genero];
+        descripcionPersonajeTMP.text = descripcionPersonaje[genero];
     }
 
 
@@ -60,9 +74,9 @@ public class MenuPrincipal : MonoBehaviour
     {
         if (GetDatos.instance.ejerciciosCargados && GetDatos.instance.evaluacionCargado && GetDatos.instance.conceptosCargados)
         {
-            Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
+            //Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
             //Carga_Nivel.Nivel_A_Cargar("Nivel_1_Conceptos");
-            //Carga_Nivel.Nivel_A_Cargar("Nivel_2_Ejercicios");
+            Carga_Nivel.Nivel_A_Cargar("Nivel_2_Ejercicios");
         }
         else
         {

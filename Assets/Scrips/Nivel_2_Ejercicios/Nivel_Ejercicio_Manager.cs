@@ -135,28 +135,28 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             //}
 
 
-                // Preparar un string para almacenar todas las opciones
-                string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
+            // Preparar un string para almacenar todas las opciones
+            string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
 
-                // Añadir comprobación de límites
-                for (int j = 0; j < cuatroOpciones.Length; j++)
+            // Añadir comprobación de límites
+            for (int j = 0; j < cuatroOpciones.Length; j++)
+            {
+                if (j < diezEjercicios[i].opcionesMultiples.Length)
                 {
-                    if (j < diezEjercicios[i].opcionesMultiples.Length)
-                    {
-                        cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
-                        cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
-                    }
-
-                    // Añadir cada opción al string de depuración
-                    opcionesDebug += $"[{j}] {cuatroOpciones[j]} ";
+                    cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
+                }
+                else
+                {
+                    Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
+                    cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
                 }
 
-                // Mostrar todas las opciones en un solo mensaje de depuración
-                Debug.Log(opcionesDebug);
+                // Añadir cada opción al string de depuración
+                opcionesDebug += $"[{j}] {cuatroOpciones[j]} ";
+            }
+
+            // Mostrar todas las opciones en un solo mensaje de depuración
+            Debug.Log(opcionesDebug);
 
         }
 
@@ -198,7 +198,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 }
                 else
                 {
-                    objetoNivel2.opciones[j] = "Opción no disponible"; // o algún valor por defecto
+                    objetoNivel2.opciones[j] = "Opción no disponible";
                 }
             }
 
@@ -209,20 +209,45 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 opcionesDebug += $"[{j}] {objetoNivel2.opciones[j]} ";
             }
             Debug.Log(opcionesDebug);
-
-            // Falta decirle cual es el correcto via código
-            // También distribuir los 4 textos random en las 4 opciones de respuesta.
         }
     }
     #endregion
 
 
     //Esta configuracion de botones se llamara y seteara el correcto desde el objeto recolectado
+    #region TesteandoNuevaConfig
 
-    //Variable para que no se precione mas de 1 boton
+    //public void RespuestaCorrecta()
+    //{
+    //    if (!botonPrecionado)
+    //    {
+    //        botonPrecionado = true;
+
+    //        Debug.Log("RespuestaCorrecta");
+
+    //        //Dar feedback al jugador y sumar puntos
+    //        StartCoroutine(RCorrecta_Corrutina());
+    //        RevisarSiAgarre10();
+    //    }
+    //}
 
 
-    public void RespuestaCorrecta()
+
+    //public void RespuestaIncorrecta()
+    //{
+    //    if (!botonPrecionado)
+    //    {
+    //        botonPrecionado = true;
+    //        Debug.Log("Respuesta Incorrecta");
+
+
+    //        StartCoroutine(Respuesta_Incorrecta());
+    //        RevisarSiAgarre10();
+    //    }      
+    //} 
+    #endregion
+
+    public void RespuestaCorrecta(Button boton)
     {
         if (!botonPrecionado)
         {
@@ -230,23 +255,38 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
             Debug.Log("RespuestaCorrecta");
 
-            //Dar feedback al jugador y sumar puntos
+            // Cambiar color del botón correcto
+            boton.GetComponent<Image>().color = Color.green;
+
+            // Dar feedback al jugador y sumar puntos
             StartCoroutine(RCorrecta_Corrutina());
             RevisarSiAgarre10();
         }
     }
 
-
-
-    public void RespuestaIncorrecta()
+    public void RespuestaIncorrecta(Button boton)
     {
         if (!botonPrecionado)
         {
             botonPrecionado = true;
             Debug.Log("Respuesta Incorrecta");
+
+            // Cambiar color del botón incorrecto
+            // Aqui
+            string hexColor = "#8C8C8C";//Color seteado correcto
+            Color color;
+            if (ColorUtility.TryParseHtmlString(hexColor, out color))
+            {
+                boton.GetComponent<Image>().color = color;
+            }
+            else
+            {
+                Debug.LogError("Error al convertir el color hexadecimal.");
+            }
+
             StartCoroutine(Respuesta_Incorrecta());
             RevisarSiAgarre10();
-        }      
+        }
     }
 
     IEnumerator Respuesta_Incorrecta()

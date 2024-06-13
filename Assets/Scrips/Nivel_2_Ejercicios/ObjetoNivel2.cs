@@ -57,42 +57,86 @@ public class ObjetoNivel2 : MonoBehaviour
     }
 
     //Aqui configuramos la funcion correcta para cada uno de los botones
+    #region TesteandoNuevaConfig
+    //public void ConfigurarBotones()
+    //{
+    //    if (tipo == 1) //Multiples
+    //    {
+    //        for (int i = 0; i < Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesMultiples.Length; i++)
+    //        {
+    //            Button boton = Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesMultiples[i].GetComponent<Button>();
+    //            boton.onClick.RemoveAllListeners();
+
+    //            if (i == opcionCorrecta)
+    //            {
+    //                boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta);
+    //            }
+    //            else
+    //            {
+    //                boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta);
+    //            }
+    //        }
+    //    }
+    //    if (tipo == 2) //Punet
+    //    {
+    //        for (int i = 0; i < Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesPunnet.Length; i++)
+    //        {
+    //            Button boton = Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesPunnet[i].GetComponent<Button>();
+    //            boton.onClick.RemoveAllListeners();
+
+    //            if (i == opcionCorrecta)
+    //            {
+    //                boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta);
+    //            }
+    //            else
+    //            {
+    //                boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta);
+    //            }
+    //        }
+    //    }
+    //} 
+    #endregion
     public void ConfigurarBotones()
     {
-        if (tipo == 1) //Multiples
+        if (tipo == 1) // Multiples
         {
             for (int i = 0; i < Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesMultiples.Length; i++)
             {
                 Button boton = Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesMultiples[i].GetComponent<Button>();
                 boton.onClick.RemoveAllListeners();
 
+                // Reset button color
+                boton.GetComponent<Image>().color = Color.white; // Cambia a tu color original
+
                 if (i == opcionCorrecta)
                 {
-                    boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta);
+                    boton.onClick.AddListener(() => Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta(boton));
                 }
                 else
                 {
-                    boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta);
+                    boton.onClick.AddListener(() => Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta(boton));
                 }
             }
         }
-        if (tipo == 2) //Punet
+        else if (tipo == 2) // Punnet
         {
             for (int i = 0; i < Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesPunnet.Length; i++)
             {
                 Button boton = Nivel_Ejercicio_Manager.Instance.botonesRespuestas_OpcionesPunnet[i].GetComponent<Button>();
                 boton.onClick.RemoveAllListeners();
 
+                // Reset button color
+                boton.GetComponent<Image>().color = Color.white; // Cambia a tu color original
+
                 if (i == opcionCorrecta)
                 {
-                    boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta);
+                    boton.onClick.AddListener(() => Nivel_Ejercicio_Manager.Instance.RespuestaCorrecta(boton));
                 }
                 else
                 {
-                    boton.onClick.AddListener(Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta);
+                    boton.onClick.AddListener(() => Nivel_Ejercicio_Manager.Instance.RespuestaIncorrecta(boton));
                 }
             }
         }
     }
-
 }
