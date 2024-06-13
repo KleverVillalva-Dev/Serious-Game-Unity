@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -59,6 +60,8 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
     private float vidaMaximaEnemigo = 7;
     private float vidaActualEnemigo;
 
+    private int respuestasIncorrectas;
+
     private void Start()
     {
         viadaActualJugador = vidaMaximaJugador;
@@ -108,6 +111,16 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
             TextMeshProUGUI textoBoton = botonesRespuestas[i].GetComponentInChildren<TextMeshProUGUI>();
             textoBoton.text = todasOpciones[indexPregunta, i];
 
+
+            #region Debug
+            // Log de la opción correcta, borrar esta zona luego de testeo
+            if (esOpcionCorrecta[indexPregunta, i])
+            {
+                Debug.Log("Opción correcta para la pregunta " + indexPregunta + ": " + todasOpciones[indexPregunta, i]);
+            }
+
+            #endregion
+
             int opcionIndex = i; // Necesario para la closure en el lambda
             botonesRespuestas[i].GetComponent<Button>().onClick.RemoveAllListeners();
             botonesRespuestas[i].GetComponent<Button>().onClick.AddListener(() => VerificarRespuesta(opcionIndex));
@@ -145,6 +158,8 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textoSolucion;
     [SerializeField] GameObject panelSolucion;
+    [SerializeField] GameObject explocionPersonaje;
+    [SerializeField] GameObject explocionAntagonista;
  
     public void ActivarPanelSolucion()
     {
@@ -158,10 +173,20 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
         {
             //Reiniciar o hacer algo si muere
             indexPregunta = 0;
+            //Aqui guardar intentos en el bos final para mostrar en resultados
+            respuestasIncorrectas = Mathf.RoundToInt(vidaMaximaJugador) - Mathf.RoundToInt(viadaActualJugador);
+            GameManager.instance.evaluacion_RespuestasIncorrectas += respuestasIncorrectas;
+            GameManager.instance.evaluacion_Intentos++;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }else if (vidaActualEnemigo <= 0 || indexPregunta > 10)
         {
             indexPregunta = 0;
+
+            respuestasIncorrectas = Mathf.RoundToInt(vidaMaximaJugador) - Mathf.RoundToInt(viadaActualJugador);
+            GameManager.instance.evaluacion_RespuestasIncorrectas += respuestasIncorrectas;
+            GameManager.instance.evaluacion_Intentos++;
             SceneManager.LoadScene("Resultados");
         }
         else
@@ -175,6 +200,7 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
         //Lanzar el matraz si queremos
         yield return new WaitForSeconds(1.5f); //Tiempo mientras se lanza
         //Anim del enemigo reaccionando al lanzamiento
+        explocionAntagonista.SetActive(true);
         animEnemigo.SetTrigger("Danio");
         //Bajar vida barra de vida enemigo.
         vidaActualEnemigo--;
@@ -201,6 +227,7 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
         animEnemigo.SetTrigger("Disparar");
         //Lanzar el matraz si queremos
         yield return new WaitForSeconds(1.5f); //Tiempo mientras se lanza
+        explocionPersonaje.SetActive(true);
         animJugador.SetTrigger("Danio");
         //Anim del jugador reaccionando al lanzamiento
         animEnemigo.SetTrigger("Burla");

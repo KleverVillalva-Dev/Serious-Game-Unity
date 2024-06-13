@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Jugador_Comportamiento : MonoBehaviour
@@ -24,6 +25,7 @@ public class Jugador_Comportamiento : MonoBehaviour
     [SerializeField] public int vidaMaxima;
     public int vidaActual;
     public bool muerte;
+    string scene;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class Jugador_Comportamiento : MonoBehaviour
 
     private void Start()
     {
-        
+        scene =  SceneManager.GetActiveScene().name;
         cDLanzamiento = 0f;
         vidaActual = vidaMaxima;
         rb = GetComponent<Rigidbody>();
@@ -51,6 +53,17 @@ public class Jugador_Comportamiento : MonoBehaviour
         {
             muerte = true;
             animator.SetTrigger("Muerte");
+           
+            //Guardar Datos en gameManager
+            if (scene == "Nivel_1_Conceptos")
+            {
+                GameManager.instance.concepos_VirusEliminados += Nivel_Conceptos_Manager.Instance.virusMatados;
+                GameManager.instance.conceptos_Intentos++;
+            }else if(scene == "Nivel_2_Ejercicios")
+            {
+                GameManager.instance.ejercicios_VirusEliminados += Nivel_Ejercicio_Manager.Instance.virusMatados;
+                GameManager.instance.ejercicios_Intentos++;
+            }
         }
 
         //Bajar CD lanzamiento a 0
@@ -95,8 +108,14 @@ public class Jugador_Comportamiento : MonoBehaviour
         }
         else
         {
-            //Re estructurar. hecho para build
-            Nivel_Conceptos_Manager.Instance.ReiniciarEscena();
+            if (scene == "Nivel_1_Conceptos")
+            {
+                Nivel_Conceptos_Manager.Instance.ReiniciarEscena();
+            }
+            else if (scene == "Nivel_2_Ejercicios")
+            {
+                Nivel_Ejercicio_Manager.Instance.ReiniciarEscena();
+            }          
         }  
     }
 

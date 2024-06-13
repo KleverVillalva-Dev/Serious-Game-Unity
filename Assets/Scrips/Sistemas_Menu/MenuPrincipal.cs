@@ -60,8 +60,8 @@ public class MenuPrincipal : MonoBehaviour
     {
         if (GetDatos.instance.ejerciciosCargados && GetDatos.instance.evaluacionCargado && GetDatos.instance.conceptosCargados)
         {
-            //Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
-            Carga_Nivel.Nivel_A_Cargar("Nivel_1_Conceptos");
+            Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
+            //Carga_Nivel.Nivel_A_Cargar("Nivel_1_Conceptos");
             //Carga_Nivel.Nivel_A_Cargar("Nivel_2_Ejercicios");
         }
         else

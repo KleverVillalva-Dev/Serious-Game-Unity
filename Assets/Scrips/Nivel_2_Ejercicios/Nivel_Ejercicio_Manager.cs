@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GetDatos;
 
@@ -69,6 +70,14 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     string[] cuatroOpciones = new string[4];
 
+    /// <summary>
+    /// Variables locales utilidad
+    /// </summary>
+    /// 
+    bool botonPrecionado = false;
+    int respuestasIncorrectas;
+
+
     private void Start()
     {
         //Activar personaje para UI dependiendo de con cual se este jugando
@@ -103,23 +112,58 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             preguntaTxt[i] = diezEjercicios[i].pregunta;
             detallesTxt[i] = diezEjercicios[i].detalles;
 
+            // Mensajes de depuración
+            //Debug.Log($"Ejercicio {i} asignado:");
+            //Debug.Log($"  tipoTxt[{i}] = {tipoTxt[i]}");
+            //Debug.Log($"  preguntaTxt[{i}] = {preguntaTxt[i]}");
+            //Debug.Log($"  detallesTxt[{i}] = {detallesTxt[i]}");
+
             // cambiamos string "tipo" por entero id_tipo, 1 para multiple 2 para punnet.
-            if (diezEjercicios[i].tipo == 1)// 1 "Selección Múltiple"
-            {
+
+            // Añadir comprobación de límites
+            //for (int j = 0; j < cuatroOpciones.Length; j++)
+            //{
+            //    if (j < diezEjercicios[i].opcionesMultiples.Length)
+            //    {
+            //        cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
+            //    }
+            //    else
+            //    {
+            //        Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
+            //        cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
+            //    }
+            //}
+
+
+                // Preparar un string para almacenar todas las opciones
+                string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
+
+                // Añadir comprobación de límites
                 for (int j = 0; j < cuatroOpciones.Length; j++)
                 {
-                    cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
+                    if (j < diezEjercicios[i].opcionesMultiples.Length)
+                    {
+                        cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
+                        cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
+                    }
+
+                    // Añadir cada opción al string de depuración
+                    opcionesDebug += $"[{j}] {cuatroOpciones[j]} ";
                 }
-            }
-            else
-            {
-                //  otros tipos de ejercicios aquí 
-            }
+
+                // Mostrar todas las opciones en un solo mensaje de depuración
+                Debug.Log(opcionesDebug);
+
         }
 
         InstanciarObjeto();
     }
 
+    #region Instanciar objeto v2
     private void InstanciarObjeto()
     {
         for (int i = 0; i < posObjetos.Length; i++)
@@ -133,27 +177,50 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             objetoNivel2.pregunta = preguntaTxt[i];
             objetoNivel2.detalles = detallesTxt[i];
 
+            // Verificación de límites y mensajes de depuración
+            if (diezEjercicios[i].opcionesMultiples.Length < 4)
+            {
+                Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
+            }
+
             // Asignar las opciones para cada instancia
             for (int j = 0; j < cuatroOpciones.Length; j++)
             {
-                objetoNivel2.opciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
-
-                //Enviarle info al objeto de cual es la correcta
-                if (diezEjercicios[i].opcionesMultiples[j].es_correcta)
+                if (j < diezEjercicios[i].opcionesMultiples.Length)
                 {
-                    objetoNivel2.opcionCorrecta = j;
+                    objetoNivel2.opciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
+
+                    // Enviarle info al objeto de cual es la correcta
+                    if (diezEjercicios[i].opcionesMultiples[j].es_correcta)
+                    {
+                        objetoNivel2.opcionCorrecta = j;
+                    }
+                }
+                else
+                {
+                    objetoNivel2.opciones[j] = "Opción no disponible"; // o algún valor por defecto
                 }
             }
 
-            // Falta decirle cual es el correcto via codigo
-            //Tambien distribuir los 4 textos random en las 4 opciones de respuesta.
+            // Mensaje de depuración para verificar las opciones asignadas
+            string opcionesDebug = $"Opciones para objetoNivel2 en posObjetos[{i}]: ";
+            for (int j = 0; j < objetoNivel2.opciones.Length; j++)
+            {
+                opcionesDebug += $"[{j}] {objetoNivel2.opciones[j]} ";
+            }
+            Debug.Log(opcionesDebug);
+
+            // Falta decirle cual es el correcto via código
+            // También distribuir los 4 textos random en las 4 opciones de respuesta.
         }
     }
+    #endregion
+
 
     //Esta configuracion de botones se llamara y seteara el correcto desde el objeto recolectado
-   
+
     //Variable para que no se precione mas de 1 boton
-    bool botonPrecionado = false;
+
 
     public void RespuestaCorrecta()
     {
@@ -168,6 +235,8 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             RevisarSiAgarre10();
         }
     }
+
+
 
     public void RespuestaIncorrecta()
     {
@@ -197,7 +266,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         //Reproducir sonido si hay
 
         //No sumar puntos, o guardar el error.
-
+        respuestasIncorrectas++;
         //Tiempo para apreciar el feedback
         yield return new WaitForSeconds(4);
         //Cerrar panel abierto
@@ -205,6 +274,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         preguntaUi_SeleccionMultiple.SetActive(false);
 
         //Restablecer variable
+        GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
     IEnumerator RCorrecta_Corrutina()
@@ -232,13 +302,18 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         preguntaUi_SeleccionMultiple.SetActive(false);
 
         //Restablecer variable
+        GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
     public void RevisarSiAgarre10()
     {
         if (objetoRecolectableAgarrado == 10)
         {
-            //Logica para pasar de nivel
+            StartCoroutine(NivelEjerciciosSuperado());
+        }
+        else
+        {
+            
         }
     }
 
@@ -252,7 +327,23 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
         //Aqui puedo implementar logica para guardar los datos del nivel si es necesario.
 
+        GameManager.instance.ejercicios_VirusEliminados += virusMatados;
+        GameManager.instance.ejercicios_RespuestasIncorrectas += respuestasIncorrectas;
+        GameManager.instance.ejercicios_Intentos++;
+
         GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
         Carga_Nivel.Nivel_A_Cargar("SC_Antagonista");
+    }
+
+
+    public void ReiniciarEscena()
+    {
+        StartCoroutine(ReiniciarEscenaCorrutina());
+    }
+
+    public IEnumerator ReiniciarEscenaCorrutina()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

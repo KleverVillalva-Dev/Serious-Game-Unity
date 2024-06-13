@@ -1045,6 +1045,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JuegoEnPausa: 0
   personajeSeleccionado: 0
+  textosAntagonista:
+  - "\"\xA1Oh, has demostrado que puedes recitar las teor\xEDas! Pero, \xBFpuedes
+    sobrevivir a la vor\xE1gine de la aplicaci\xF3n pr\xE1ctica? Prep\xE1rate para
+    naufragar en un mar de complejidades gen\xE9ticas, donde cada error ser\xE1 como
+    un golpe de marea en tu camino hacia la victoria.\" "
+  - "\"\xA1Has logrado superar los desaf\xEDos hasta ahora,\r\npero subestimas la
+    complejidad que aguarda en la siguiente etapa! En la evaluaci\xF3n final,\r\ntus
+    habilidades ser\xE1n puestas a prueba contra la verdadera esencia de la gen\xE9tica.
+    Prep\xE1rate \r\npara enfrentarte a desaf\xEDos que desafiar\xE1n incluso tus
+    conocimientos m\xE1s profundos.\r\n\xBFCrees que eres lo suficientemente astuto
+    como para prevalecer contra los secretos m\xE1s oscuros\r\nde la herencia?\""
+  indexTextoAntagonista: 0
+  conceptos_Intentos: 0
+  concepos_VirusEliminados: 0
+  conceptos_tiempo: 0
+  ejercicios_Intentos: 0
+  ejercicios_RespuestasIncorrectas: 0
+  ejercicios_VirusEliminados: 0
+  ejercicios_tiempo: 0
+  evaluacion_Intentos: 0
+  evaluacion_RespuestasIncorrectas: 0
+  evaluacion_Tiempo: 0
 --- !u!4 &645267518
 Transform:
   m_ObjectHideFlags: 0

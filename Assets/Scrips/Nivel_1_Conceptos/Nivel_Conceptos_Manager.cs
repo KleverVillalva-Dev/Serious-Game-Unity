@@ -128,6 +128,9 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         //Aqui puedo implementar logica para guardar los datos del nivel si es necesario.
+        GameManager.instance.concepos_VirusEliminados += virusMatados;
+        GameManager.instance.conceptos_Intentos++;
+
 
         GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
         Carga_Nivel.Nivel_A_Cargar("SC_Antagonista");

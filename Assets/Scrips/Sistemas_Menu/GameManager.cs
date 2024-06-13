@@ -42,4 +42,22 @@ public class GameManager : MonoBehaviour
         " la herencia?\""
     };
     public int indexTextoAntagonista = 0; //Cuando termine el juego recordar reiniciar index.
+
+    //Datos para mostrar en Resultados
+
+    //Nivel conceptos
+    public int conceptos_Intentos; //Veces que se reinicia el nivel
+    public int concepos_VirusEliminados;
+    public float conceptos_tiempo; //Pensarlo
+
+    //Nivel Ejercicios
+    public int ejercicios_Intentos; //Veces que se reinicia el nivel
+    public int ejercicios_RespuestasIncorrectas;
+    public int ejercicios_VirusEliminados;
+    public float ejercicios_tiempo;
+
+    //Nivel Evaluacion
+    public int evaluacion_Intentos;
+    public int evaluacion_RespuestasIncorrectas;
+    public float evaluacion_Tiempo;
 }
