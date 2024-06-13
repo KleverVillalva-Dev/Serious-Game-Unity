@@ -50,6 +50,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     [SerializeField] public GameObject[] botonesRespuestas_OpcionesPunnet; //Seteada la funcion correcta desde el objeto recolectable
 
+    [SerializeField] public TextMeshProUGUI[] posMatriz;
 
     [Header("UI pergaminos y virus")]
     public int objetoRecolectableAgarrado;
@@ -87,6 +88,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         personajeMasculino.SetActive(!esFemenino);
 
         StartCoroutine(SetearInformacionObjetoLVL2());
+        ResetearTextoMatriz();
     }
     private void Update()
     {
@@ -314,6 +316,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         preguntaUi_SeleccionMultiple.SetActive(false);
 
         //Restablecer variable
+        ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
@@ -342,6 +345,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         preguntaUi_SeleccionMultiple.SetActive(false);
 
         //Restablecer variable
+        ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
@@ -385,5 +389,13 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void ResetearTextoMatriz()
+    {
+        for (int i = 0; i < posMatriz.Length; i++)
+        {
+            posMatriz[i].text = "";
+        }
     }
 }

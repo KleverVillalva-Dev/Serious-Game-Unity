@@ -18,13 +18,13 @@ public class Resultados : MonoBehaviour
             "\r" +
             "\n\r\nNIVEL EJERCICIOS\r" +
             "\n" +
-            "\r\nNumero de intentos: " + GameManager.instance.ejercicios_Intentos +
+            "\r\nNúmero de intentos: " + GameManager.instance.ejercicios_Intentos +
             "\r\nRespuestas incorrectas: " + GameManager.instance.ejercicios_RespuestasIncorrectas +
             "\r\nVirus eliminados: " + GameManager.instance.ejercicios_VirusEliminados +
 
             "\r\n\r\nNIVEL EVALUACION" +
             "\r" +
-            "\n\r\nNumero de intentos " + GameManager.instance.evaluacion_Intentos +
+            "\n\r\nNúmero de intentos " + GameManager.instance.evaluacion_Intentos +
             "\r\nRespuestas incorrectas: " + GameManager.instance.evaluacion_RespuestasIncorrectas;
 
           StartCoroutine(TiperCaracteres(tmp_TextoMostrar, textoAMostrar, 0, 0.07f));

@@ -126,7 +126,16 @@ public class Jugador_Comportamiento : MonoBehaviour
             animator.SetTrigger("Disparar");
             StartCoroutine(SimpleRetraso());
             cDLanzamiento = cd;
+            StartCoroutine(VelocidadReducida());
         }
+    }
+
+    IEnumerator VelocidadReducida()
+    {
+        float v = velocidad;
+        velocidad = velocidad / 2;
+        yield return new WaitForSeconds(1.5f);
+        velocidad = v;
     }
     //Coorrutina hardcodeada por el hecho de que las anims vienen de mixamo, fue la forma que pude hacer un lanzamiento creible
     IEnumerator SimpleRetraso()
