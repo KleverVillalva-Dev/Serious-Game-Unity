@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Verde
+  m_Name: celestevidrio
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: b79c07bc0d5eabf4c80a3149a83a3cc6, type: 2}
+  m_Parent: {fileID: 2100000, guid: ca230c868dfce204ea713d9ec4de7400, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -26,5 +26,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0.45914912, g: 0.6320754, b: 0.2236116, a: 1}
+    - _Color: {r: 0.36133856, g: 0.42653376, b: 0.5283019, a: 1}
   m_BuildTextureStacks: []
