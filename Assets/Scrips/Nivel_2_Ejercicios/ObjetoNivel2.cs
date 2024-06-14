@@ -18,6 +18,7 @@ public class ObjetoNivel2 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.JuegoEnPausa = true;
+            AudioManager.instance.MusicaEspecial(AudioManager.instance.sfx_ejercicio);
             // MODIF
             if (tipo == 1)// 1 "Selección Múltiple"
             {

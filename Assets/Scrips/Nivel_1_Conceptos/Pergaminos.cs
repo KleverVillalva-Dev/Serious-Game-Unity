@@ -11,7 +11,7 @@ public class Pergaminos : MonoBehaviour
         {
             //Pausar para que no nos maten los virus
             GameManager.instance.JuegoEnPausa = true;
-
+            AudioManager.instance.MusicaEspecial(AudioManager.instance.sfx_ejercicio);
             Nivel_Conceptos_Manager.Instance.pergaminoUi.SetActive(true);
             Nivel_Conceptos_Manager.Instance.pergaminoTitulo.text = titulo;
             Nivel_Conceptos_Manager.Instance.pergaminoDescripcion.text = descripcion;

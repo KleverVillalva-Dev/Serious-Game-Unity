@@ -18,6 +18,7 @@ public class MenuPrincipal : MonoBehaviour
     //Activa o desactiva selector
     public void SelectorPersonaje()
     {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
         if (!canvasSeleccionPersonaje.activeSelf)
         {
             canvasSeleccionPersonaje.SetActive(true);
@@ -60,6 +61,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void SeleccionarGeneroInt(int genero)
     {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
         GameManager.instance.personajeSeleccionado = genero;
         personajesUtilidad[0].SetActive(false);
         personajesUtilidad[1].SetActive(false);
@@ -72,6 +74,8 @@ public class MenuPrincipal : MonoBehaviour
 
     public void BotonJugar()
     {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
+
         if (GetDatos.instance.ejerciciosCargados && GetDatos.instance.evaluacionCargado && GetDatos.instance.conceptosCargados)
         {
             //Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
@@ -87,6 +91,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void BotonCerrarJuego()
     {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
         Debug.Log("El boton funciona");
         Application.Quit();
     }

@@ -12,6 +12,7 @@ public class Matraz : MonoBehaviour
         {
             exploto = true;
             Instantiate(explocionParticulas, transform.position, Quaternion.identity);
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_Arma);
             Destroy(gameObject);
         }
     }

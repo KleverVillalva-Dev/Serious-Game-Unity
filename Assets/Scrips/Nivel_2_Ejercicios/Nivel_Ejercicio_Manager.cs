@@ -260,6 +260,8 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             // Cambiar color del botón correcto
             boton.GetComponent<Image>().color = Color.green;
 
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaCorrecta);
+
             // Dar feedback al jugador y sumar puntos
             StartCoroutine(RCorrecta_Corrutina());
             RevisarSiAgarre10();
@@ -272,7 +274,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         {
             botonPrecionado = true;
             Debug.Log("Respuesta Incorrecta");
-
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaIncorrecta);
             // Cambiar color del botón incorrecto
             // Aqui
             string hexColor = "#8C8C8C";//Color seteado correcto
@@ -314,7 +316,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         //Cerrar panel abierto
         preguntaUi_Punnett.SetActive(false);
         preguntaUi_SeleccionMultiple.SetActive(false);
-
+        AudioManager.instance.DetenerMusicaEspecial();
         //Restablecer variable
         ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
@@ -343,7 +345,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         //Cerrar panel abierto
         preguntaUi_Punnett.SetActive(false);
         preguntaUi_SeleccionMultiple.SetActive(false);
-
+        AudioManager.instance.DetenerMusicaEspecial();
         //Restablecer variable
         ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
@@ -366,6 +368,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         Debug.Log("10 objetos recolectados pasando de nivel");
         //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
         //Si hay musica reproducir
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_NivelSuperado);
         GameManager.instance.JuegoEnPausa = true; //Pausar juego para que no lo elimine un enemigo
         yield return new WaitForSeconds(5);
 
@@ -387,7 +390,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     public IEnumerator ReiniciarEscenaCorrutina()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

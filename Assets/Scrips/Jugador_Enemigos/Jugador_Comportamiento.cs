@@ -53,7 +53,7 @@ public class Jugador_Comportamiento : MonoBehaviour
         {
             muerte = true;
             animator.SetTrigger("Muerte");
-           
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_muertePersonaje);
             //Guardar Datos en gameManager
             if (scene == "Nivel_1_Conceptos")
             {
@@ -107,7 +107,7 @@ public class Jugador_Comportamiento : MonoBehaviour
             }
         }
         else
-        {
+        {        
             if (scene == "Nivel_1_Conceptos")
             {
                 Nivel_Conceptos_Manager.Instance.ReiniciarEscena();

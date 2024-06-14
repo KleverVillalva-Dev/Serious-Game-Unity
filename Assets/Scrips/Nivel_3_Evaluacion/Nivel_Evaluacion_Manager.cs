@@ -164,11 +164,13 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
             if (esOpcionCorrecta[indexPregunta, opcionIndex])
             {
                 Debug.Log("¡Respuesta correcta!");
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaCorrecta);
                 StartCoroutine(RespuestaCorrecta());             
             }
             else
             {
                 Debug.Log("Respuesta incorrecta.");
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaIncorrecta);
                 StartCoroutine(RespuestaIncorrecta());
             }
         }     
@@ -196,6 +198,7 @@ public class Nivel_Evaluacion_Manager : MonoBehaviour
     }
     public void BotonEntiendo()
     {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
         panelSolucion.SetActive(false);
         if (viadaActualJugador <= 0f)
         {

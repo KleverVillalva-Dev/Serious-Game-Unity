@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static GetDatos;
 
 public class GameManager : MonoBehaviour
@@ -60,4 +61,44 @@ public class GameManager : MonoBehaviour
     public int evaluacion_Intentos;
     public int evaluacion_RespuestasIncorrectas;
     public float evaluacion_Tiempo;
+
+    ///MUSICA
+    ///
+    private void Start()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+        SetMusicaFondo(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnSceneChanged(Scene previousScene, Scene newScene)
+    {
+        SetMusicaFondo(newScene.name);
+    }
+
+    private void SetMusicaFondo(string sceneName)
+    {
+        if (AudioManager.instance == null) return;
+
+        switch (sceneName)
+        {
+            case "MenúPrincipal":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_MenuPrincipal);
+                break;
+            case "Nivel_1_Conceptos":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_Conceptos);
+                break;
+            case "Nivel_2_Ejercicios":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_Ejercicios);
+                break;
+            case "Nivel_3_Evaluacion":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_Evaluacion);
+                break;
+            case "SC_Antagonista":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_MenuPrincipal);
+                break;
+            case "Resultados":
+                AudioManager.instance.MusicaFondo(AudioManager.instance.entorno_MenuPrincipal);
+                break;
+        }
+    }
 }

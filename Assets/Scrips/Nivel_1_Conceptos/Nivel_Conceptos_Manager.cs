@@ -101,6 +101,10 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
         pergaminoUi.SetActive(false);
         GameManager.instance.JuegoEnPausa = false;
 
+        //Sonidos
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
+        AudioManager.instance.DetenerMusicaEspecial();
+
         if (pergaminosRecolectados == 10)
         {
             //Corrutina para pasar al siguiente nivel
@@ -115,7 +119,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
 
     public IEnumerator ReiniciarEscenaCorrutina()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -124,6 +128,8 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
         Debug.Log("10 pergaminos recolectados pasando de nivel");
         //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
         //Si hay musica reproducir
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_NivelSuperado);
+
         GameManager.instance.JuegoEnPausa = true; //Pausar juego para que no lo elimine un enemigo
         yield return new WaitForSeconds(5);
 
