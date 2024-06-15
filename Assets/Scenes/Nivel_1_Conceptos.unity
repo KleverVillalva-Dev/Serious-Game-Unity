@@ -948,6 +948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TmpVirus
       objectReference: {fileID: 0}
+    - target: {fileID: 2115626325033457199, guid: 4da109c79470aa2479a7db0975da7c42, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9cc323a435ee358468a702c59b55d4c5, type: 3}
     - target: {fileID: 2224436997414603193, guid: 4da109c79470aa2479a7db0975da7c42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -995,7 +999,7 @@ PrefabInstance:
     - target: {fileID: 5143525914956596568, guid: 4da109c79470aa2479a7db0975da7c42, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1722648624, guid: c571f1eb1d41c4e448620c4bc2366853, type: 3}
+      objectReference: {fileID: 21300000, guid: 7ea81472e54b6dc4ab4fae0cae3b6490, type: 3}
     - target: {fileID: 5143525914956596568, guid: 4da109c79470aa2479a7db0975da7c42, type: 3}
       propertyPath: m_Color.a
       value: 0.78431374
