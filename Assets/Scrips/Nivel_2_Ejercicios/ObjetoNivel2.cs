@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ public class ObjetoNivel2 : MonoBehaviour
             if (tipo == 1)// 1 "Selección Múltiple"
             {
                 Nivel_Ejercicio_Manager.Instance.preguntaUi_SeleccionMultiple.SetActive(true); // Si es de tipo Seleccion Multiple activar esta
-                                                                                                //Sino, activar una interfase.
+                Nivel_Ejercicio_Manager.Instance.ReactivarBotonesDesactivados();                                                                              //Sino, activar una interfase.
                 Nivel_Ejercicio_Manager.Instance.tmpPregunta_SeleccionMultiple.text = pregunta;
                 Nivel_Ejercicio_Manager.Instance.tmpDetalles_SeleccionMultiple.text = detalles;
 
@@ -47,6 +48,7 @@ public class ObjetoNivel2 : MonoBehaviour
             }
 
             Debug.Log("la opcion correcta es "+ opcionCorrecta +" "+ opciones[opcionCorrecta]);
+            Nivel_Ejercicio_Manager.Instance.opcionCorrectaEnBoton = opciones[opcionCorrecta].ToString();
 
             // Falta revisar si ya se recolectaron los 10 para pasar al siguiente nivel
             // Esto lo puedo hacer en el boton de cerrar
@@ -140,4 +142,5 @@ public class ObjetoNivel2 : MonoBehaviour
             }
         }
     }
+
 }

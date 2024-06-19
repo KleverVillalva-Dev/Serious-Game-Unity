@@ -55,6 +55,7 @@ public class Resultados : MonoBehaviour
     public void BotonReiniciarJuego()
     {
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
+
         //Reiniciar varialbes
         GameManager.instance.concepos_VirusEliminados = 0;
         GameManager.instance.conceptos_Intentos = 0;

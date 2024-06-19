@@ -8,7 +8,7 @@ public class Jugador_Comportamiento : MonoBehaviour
     private float ejeX = 0f;
     private float ejeZ = 0f;
     
-    private Animator animator;
+    public Animator animator;
     public Joystick joystick;
     public Button disparar;
     public ParticleSystem particulas;
@@ -17,7 +17,7 @@ public class Jugador_Comportamiento : MonoBehaviour
     [Header("Variables jugabilidad")]
     [SerializeField] public float cDLanzamiento;
     public float cd;
-    [SerializeField] private float velocidad;
+    [SerializeField] public float velocidad;
     [SerializeField] GameObject matrazArma;
     [SerializeField] Transform puntoLanzamiento;
     [SerializeField] float fuerzaLanzamiento;

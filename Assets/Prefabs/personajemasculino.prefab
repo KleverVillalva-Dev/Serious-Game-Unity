@@ -7555,12 +7555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 352359751ea7193488155740530dd44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   joystick: {fileID: 0}
   disparar: {fileID: 0}
   particulas: {fileID: 7721264911115703830}
-  cDLanzamiento: 1
+  cDLanzamiento: 1.5
   cd: 0
-  velocidad: 3
+  velocidad: 2
   matrazArma: {fileID: 2575475477582433644, guid: 025aa29a52415734b874c1406e8edecc, type: 3}
   puntoLanzamiento: {fileID: 4241119976276995183}
   fuerzaLanzamiento: 15

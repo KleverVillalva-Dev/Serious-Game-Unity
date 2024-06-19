@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -42,6 +43,8 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI[] textoRespuestas_opciones;
 
     [SerializeField] public GameObject[] botonesRespuestas_OpcionesMultiples; //Seteada la funcion correcta desde el objeto recolectable
+    public string opcionCorrectaEnBoton; /// XXXXXXX texto para comparar opcion correcta entre los botones.
+    [SerializeField] public GameObject boton5050;
 
     [Header("Seleccion para el Ui en Punnet")]
     [SerializeField] public TextMeshProUGUI tmpPregunta_Punnett;
@@ -78,7 +81,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     bool botonPrecionado = false;
     int respuestasIncorrectas;
 
-
     private void Start()
     {
         //Activar personaje para UI dependiendo de con cual se este jugando
@@ -113,29 +115,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             tipoTxt[i] = diezEjercicios[i].tipo;
             preguntaTxt[i] = diezEjercicios[i].pregunta;
             detallesTxt[i] = diezEjercicios[i].detalles;
-
-            // Mensajes de depuración
-            //Debug.Log($"Ejercicio {i} asignado:");
-            //Debug.Log($"  tipoTxt[{i}] = {tipoTxt[i]}");
-            //Debug.Log($"  preguntaTxt[{i}] = {preguntaTxt[i]}");
-            //Debug.Log($"  detallesTxt[{i}] = {detallesTxt[i]}");
-
-            // cambiamos string "tipo" por entero id_tipo, 1 para multiple 2 para punnet.
-
-            // Añadir comprobación de límites
-            //for (int j = 0; j < cuatroOpciones.Length; j++)
-            //{
-            //    if (j < diezEjercicios[i].opcionesMultiples.Length)
-            //    {
-            //        cuatroOpciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
-            //    }
-            //    else
-            //    {
-            //        Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
-            //        cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
-            //    }
-            //}
-
 
             // Preparar un string para almacenar todas las opciones
             string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
@@ -210,44 +189,11 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             {
                 opcionesDebug += $"[{j}] {objetoNivel2.opciones[j]} ";
             }
-            Debug.Log(opcionesDebug);
+            //Debug.Log(opcionesDebug);
         }
     }
     #endregion
 
-
-    //Esta configuracion de botones se llamara y seteara el correcto desde el objeto recolectado
-    #region TesteandoNuevaConfig
-
-    //public void RespuestaCorrecta()
-    //{
-    //    if (!botonPrecionado)
-    //    {
-    //        botonPrecionado = true;
-
-    //        Debug.Log("RespuestaCorrecta");
-
-    //        //Dar feedback al jugador y sumar puntos
-    //        StartCoroutine(RCorrecta_Corrutina());
-    //        RevisarSiAgarre10();
-    //    }
-    //}
-
-
-
-    //public void RespuestaIncorrecta()
-    //{
-    //    if (!botonPrecionado)
-    //    {
-    //        botonPrecionado = true;
-    //        Debug.Log("Respuesta Incorrecta");
-
-
-    //        StartCoroutine(Respuesta_Incorrecta());
-    //        RevisarSiAgarre10();
-    //    }      
-    //} 
-    #endregion
 
     public void RespuestaCorrecta(Button boton)
     {
@@ -357,10 +303,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         {
             StartCoroutine(NivelEjerciciosSuperado());
         }
-        else
-        {
-            
-        }
     }
 
     IEnumerator NivelEjerciciosSuperado()
@@ -400,5 +342,72 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         {
             posMatriz[i].text = "";
         }
+    }
+
+
+
+    //Comodin 50% 
+
+
+    public List<GameObject> botonesDesactivados = new List<GameObject>(); // Lista para guardar los botones desactivados
+
+    private GameObject EncontrarBotonCorrecto()
+    {
+        foreach (GameObject boton in botonesRespuestas_OpcionesMultiples)
+        {
+            TextMeshProUGUI textoBoton = boton.GetComponentInChildren<TextMeshProUGUI>();
+            if (textoBoton != null && textoBoton.text == opcionCorrectaEnBoton)
+            {
+                return boton;
+            }
+        }
+        return null;
+    }
+
+    public void DesactivarDosBotonesIncorrectos()
+    {
+        GameObject botonCorrecto = EncontrarBotonCorrecto();
+        if (botonCorrecto == null)
+        {
+            Debug.LogError("No se encontró el botón con la opción correcta.");
+            return;
+        }
+
+        // Crear una lista con los botones incorrectos.
+        List<GameObject> botonesIncorrectos = new List<GameObject>();
+        foreach (GameObject boton in botonesRespuestas_OpcionesMultiples)
+        {
+            if (boton != botonCorrecto)
+            {
+                botonesIncorrectos.Add(boton);
+            }
+        }
+
+        // Desactivar dos botones incorrectos al azar.
+        for (int i = 0; i < 2; i++)
+        {
+            if (botonesIncorrectos.Count > 0)
+            {
+                int index = UnityEngine.Random.Range(0, botonesIncorrectos.Count);
+                GameObject botonIncorrecto = botonesIncorrectos[index];
+                botonIncorrecto.SetActive(false);
+                botonesDesactivados.Add(botonIncorrecto); // Guardar referencia al botón desactivado
+                botonesIncorrectos.RemoveAt(index);
+            }
+        }
+
+        boton5050.SetActive(false); // Desactivar el botón de comodín
+    }
+
+    public void ReactivarBotonesDesactivados()
+    {
+        // Reactivar todos los botones guardados en la lista de botones desactivados
+        foreach (GameObject boton in botonesDesactivados)
+        {
+            boton.SetActive(true);
+        }
+        boton5050.SetActive(true);
+        // Limpiar la lista después de reactivar los botones
+        botonesDesactivados.Clear();
     }
 }
