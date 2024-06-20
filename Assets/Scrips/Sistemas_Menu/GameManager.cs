@@ -101,4 +101,12 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+
+    //Selector de niveles
+    // Crear un boleano para cada nivel superado.
+    public bool nivel_Conceptos_Superado = false;
+    public bool nivel_Ejercicios_Superado = false;
+    // Al tener boleano de nivel 1 y 2 true, se desbloquea el nivel 3
+    // Cada vez que pasamos de nivel darle a true en el boleano. Ir a selector de niveles cada vez que pasemos un nivel.
 }

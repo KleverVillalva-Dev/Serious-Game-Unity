@@ -307,6 +307,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     IEnumerator NivelEjerciciosSuperado()
     {
+        GameManager.instance.nivel_Ejercicios_Superado= true;
         Debug.Log("10 objetos recolectados pasando de nivel");
         //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
         //Si hay musica reproducir

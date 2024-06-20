@@ -125,6 +125,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
 
     IEnumerator NivelConceptosSuperado()
     {
+        GameManager.instance.nivel_Conceptos_Superado = true;
         Debug.Log("10 pergaminos recolectados pasando de nivel");
         //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
         //Si hay musica reproducir
