@@ -27,5 +27,10 @@ public class SelectorDeNivel : MonoBehaviour
         {
             Carga_Nivel.Nivel_A_Cargar(nivel);
         }
+
+        if(nivel == "Nivel_1_Conceptos")
+        {
+            GameManager.instance.indexTextoAntagonista = 1;
+        }
     }
 }

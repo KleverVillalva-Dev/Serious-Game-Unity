@@ -10,7 +10,7 @@ public class ObjetoNivel2 : MonoBehaviour
     public string detalles;
     public string[] opciones = new string[4];
     public int opcionCorrecta;
-
+    Color colorOriginalBoton;
     //Para Punnet
 
     // cambiamos string "tipo" por entero id_tipo, 1 para multiple 2 para punnet.
@@ -109,7 +109,18 @@ public class ObjetoNivel2 : MonoBehaviour
                 boton.onClick.RemoveAllListeners();
 
                 // Reset button color
-                boton.GetComponent<Image>().color = Color.white; // Cambia a tu color original
+
+                //1D467E
+                string hexColor = "#1D467E";
+                Color color;
+                if (ColorUtility.TryParseHtmlString(hexColor, out color))
+                {
+                    boton.GetComponent<Image>().color = color;
+                }
+                else
+                {
+                    Debug.LogError("Error al convertir el color hexadecimal.");
+                }
 
                 if (i == opcionCorrecta)
                 {
@@ -129,7 +140,17 @@ public class ObjetoNivel2 : MonoBehaviour
                 boton.onClick.RemoveAllListeners();
 
                 // Reset button color
-                boton.GetComponent<Image>().color = Color.white; // Cambia a tu color original
+
+                string hexColor = "#1D467E";
+                Color color;
+                if (ColorUtility.TryParseHtmlString(hexColor, out color))
+                {
+                    boton.GetComponent<Image>().color = color;
+                }
+                else
+                {
+                    Debug.LogError("Error al convertir el color hexadecimal.");
+                }
 
                 if (i == opcionCorrecta)
                 {

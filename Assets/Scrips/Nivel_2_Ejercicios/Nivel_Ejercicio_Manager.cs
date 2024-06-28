@@ -80,6 +80,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     /// 
     bool botonPrecionado = false;
     int respuestasIncorrectas;
+    int respuestasIncorrectas3OpcionesYSeReinicia;
 
     private void Start()
     {
@@ -223,7 +224,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaIncorrecta);
             // Cambiar color del botón incorrecto
             // Aqui
-            string hexColor = "#8C8C8C";//Color seteado correcto
+            string hexColor = "#C33C3C";//Color seteado incorrecto
             Color color;
             if (ColorUtility.TryParseHtmlString(hexColor, out color))
             {
@@ -257,6 +258,14 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
         //No sumar puntos, o guardar el error.
         respuestasIncorrectas++;
+        respuestasIncorrectas3OpcionesYSeReinicia++;
+
+        if (respuestasIncorrectas3OpcionesYSeReinicia == 3)
+        {
+            respuestasIncorrectas3OpcionesYSeReinicia = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         //Tiempo para apreciar el feedback
         yield return new WaitForSeconds(4);
         //Cerrar panel abierto
@@ -323,6 +332,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
         GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
         Carga_Nivel.Nivel_A_Cargar("SC_Antagonista");
+        GameManager.instance.indexTextoAntagonista = 1;
     }
 
 

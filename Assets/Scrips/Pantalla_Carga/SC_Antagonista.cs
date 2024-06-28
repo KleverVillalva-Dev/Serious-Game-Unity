@@ -21,7 +21,6 @@ public class SC_Antagonista : MonoBehaviour
         animatorAntagonista.SetTrigger("Hablando");
 
         textoAMostrar = GameManager.instance.textosAntagonista[GameManager.instance.indexTextoAntagonista];
-        GameManager.instance.indexTextoAntagonista++;
         StartCoroutine(TiperCaracteres(tmpDialogo, textoAMostrar, 0, velocidadTipeo));
     }
     public IEnumerator TiperCaracteres(TextMeshProUGUI textoARemplazar, string textoAMostrar, float delayPausas, float delayEntreTipeo)
@@ -69,11 +68,11 @@ public class SC_Antagonista : MonoBehaviour
         if (GameManager.instance.indexTextoAntagonista == 1)
         { 
             //Index es 1 porque lo aumente en este nivel.
-             Carga_Nivel.Nivel_A_Cargar("Nivel_2_Ejercicios");
+             Carga_Nivel.Nivel_A_Cargar("SelectorDeNivel");
         }
         else
         {
-            Carga_Nivel.Nivel_A_Cargar("Nivel_3_Evaluacion");
+            Carga_Nivel.Nivel_A_Cargar("SelectorDeNivel");
         }
     }
 }

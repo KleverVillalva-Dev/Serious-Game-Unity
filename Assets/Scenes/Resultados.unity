@@ -705,6 +705,8 @@ MonoBehaviour:
   evaluacion_Intentos: 0
   evaluacion_RespuestasIncorrectas: 0
   evaluacion_Tiempo: 0
+  nivel_Conceptos_Superado: 0
+  nivel_Ejercicios_Superado: 0
 --- !u!1 &1041172796
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1722648624, guid: c571f1eb1d41c4e448620c4bc2366853, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ea81472e54b6dc4ab4fae0cae3b6490, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

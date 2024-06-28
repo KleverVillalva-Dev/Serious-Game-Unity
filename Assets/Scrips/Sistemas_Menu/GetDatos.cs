@@ -42,6 +42,10 @@ public class GetDatos : MonoBehaviour
     private string urlInteractivos = "https://back-serious-game.vercel.app/api/ejercicios/opcionesmultiples"; // v2 actualizado
     private string urlEvaluacion = "https://back-serious-game.vercel.app/api/preguntas/obtener";
 
+    //private string urlConceptos =     "https://back-serious-game.vercel.app/api/ejercicios/punnett-activos"; //v3 actualizado
+    ////private string urlInteractivos = "https://back-serious-game.vercel.app/api/ejercicios/activos"; // v3 actualizado
+    ////private string urlInteractivos = "https://back-serious-game.vercel.app/api/conceptos-activos"; // v4 actualizado
+    //private string urlEvaluacion =    "https://back-serious-game.vercel.app/api/evaluaciones/activos"; // v3
 
     //Conceptos
     public Conceptos[] conceptosArray;

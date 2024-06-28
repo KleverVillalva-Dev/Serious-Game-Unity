@@ -140,6 +140,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
 
 
         GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
+        GameManager.instance.indexTextoAntagonista = 0;
         Carga_Nivel.Nivel_A_Cargar("SC_Antagonista");
     }
 }
