@@ -44,7 +44,11 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     [SerializeField] public GameObject[] botonesRespuestas_OpcionesMultiples; //Seteada la funcion correcta desde el objeto recolectable
     public string opcionCorrectaEnBoton; /// XXXXXXX texto para comparar opcion correcta entre los botones.
+
+    public string opcionCorrectaEnBoton_punnet; /// XXXXXXX texto para comparar opcion correcta entre los botones.
+
     [SerializeField] public GameObject boton5050;
+    [SerializeField] public GameObject boton5050_punnet;
 
     [Header("Seleccion para el Ui en Punnet")]
     [SerializeField] public TextMeshProUGUI tmpPregunta_Punnett;
@@ -58,6 +62,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     [Header("UI pergaminos y virus")]
     public int objetoRecolectableAgarrado;
     public int virusMatados;
+
     /// ----------------------------------------------------------------------------
 
     [SerializeField] TextMeshProUGUI tmpPergaminos;
@@ -71,6 +76,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     private int[] tipoTxt = new int[10];
     private string[] preguntaTxt = new string[10];
     private string[] detallesTxt = new string[10];
+    private string[] informacion = new string[10];
 
     string[] cuatroOpciones = new string[4];
 
@@ -82,9 +88,16 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     int respuestasIncorrectas;
     int respuestasIncorrectas3OpcionesYSeReinicia;
 
+    GameObject curva;
+
+    [SerializeField] GameObject panelInfo;
+    [SerializeField] public TextMeshProUGUI tmpInformacion;
+
+
     private void Start()
     {
         //Activar personaje para UI dependiendo de con cual se este jugando
+        curva = GameObject.Find("Curva");
 
         bool esFemenino = (GameManager.instance.personajeSeleccionado == 0);
         personajeFemenino.SetActive(esFemenino);
@@ -97,6 +110,19 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     {
         tmpPergaminos.text = objetoRecolectableAgarrado.ToString() + " /10";
         tmpVirus.text = virusMatados.ToString();
+        AyudaALApuntar();
+    }
+
+    public void AyudaALApuntar()
+    {
+        if (PanelOpciones.instance.ayudaAlApuntar && curva != null)
+        {
+            curva.SetActive(true);
+        }
+        else
+        {
+            curva.SetActive(false);
+        }
     }
 
     IEnumerator SetearInformacionObjetoLVL2()
@@ -116,6 +142,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             tipoTxt[i] = diezEjercicios[i].tipo;
             preguntaTxt[i] = diezEjercicios[i].pregunta;
             detallesTxt[i] = diezEjercicios[i].detalles;
+            informacion[i] = diezEjercicios[i].explicacion_solucion;
 
             // Preparar un string para almacenar todas las opciones
             string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
@@ -158,6 +185,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             objetoNivel2.tipo = tipoTxt[i];
             objetoNivel2.pregunta = preguntaTxt[i];
             objetoNivel2.detalles = detallesTxt[i];
+            objetoNivel2.informacion = informacion[i];
 
             // Verificación de límites y mensajes de depuración
             if (diezEjercicios[i].opcionesMultiples.Length < 4)
@@ -361,10 +389,24 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
 
     public List<GameObject> botonesDesactivados = new List<GameObject>(); // Lista para guardar los botones desactivados
+    public List<GameObject> botonesDesactivados_punnet = new List<GameObject>(); // Lista para guardar los botones desactivados
 
     private GameObject EncontrarBotonCorrecto()
     {
         foreach (GameObject boton in botonesRespuestas_OpcionesMultiples)
+        {
+            TextMeshProUGUI textoBoton = boton.GetComponentInChildren<TextMeshProUGUI>();
+            if (textoBoton != null && textoBoton.text == opcionCorrectaEnBoton)
+            {
+                return boton;
+            }
+        }
+        return null;
+    }
+
+    private GameObject EncontrarBotonCorrecto_Punnet()
+    {
+        foreach (GameObject boton in botonesRespuestas_OpcionesPunnet)
         {
             TextMeshProUGUI textoBoton = boton.GetComponentInChildren<TextMeshProUGUI>();
             if (textoBoton != null && textoBoton.text == opcionCorrectaEnBoton)
@@ -410,6 +452,41 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         boton5050.SetActive(false); // Desactivar el botón de comodín
     }
 
+    public void DesactivarDosBotonesIncorrectos_Punnet()
+    {
+        GameObject botonCorrecto = EncontrarBotonCorrecto_Punnet();
+        if (botonCorrecto == null)
+        {
+            Debug.LogError("No se encontró el botón con la opción correcta.");
+            return;
+        }
+
+        // Crear una lista con los botones incorrectos.
+        List<GameObject> botonesIncorrectos = new List<GameObject>();
+        foreach (GameObject boton in botonesRespuestas_OpcionesPunnet)
+        {
+            if (boton != botonCorrecto)
+            {
+                botonesIncorrectos.Add(boton);
+            }
+        }
+
+        // Desactivar dos botones incorrectos al azar.
+        for (int i = 0; i < 2; i++)
+        {
+            if (botonesIncorrectos.Count > 0)
+            {
+                int index = UnityEngine.Random.Range(0, botonesIncorrectos.Count);
+                GameObject botonIncorrecto = botonesIncorrectos[index];
+                botonIncorrecto.SetActive(false);
+                botonesDesactivados_punnet.Add(botonIncorrecto); // Guardar referencia al botón desactivado
+                botonesIncorrectos.RemoveAt(index);
+            }
+        }
+
+        boton5050_punnet.SetActive(false); // Desactivar el botón de comodín
+    }
+
     public void ReactivarBotonesDesactivados()
     {
         // Reactivar todos los botones guardados en la lista de botones desactivados
@@ -420,5 +497,29 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         boton5050.SetActive(true);
         // Limpiar la lista después de reactivar los botones
         botonesDesactivados.Clear();
+    }
+    public void ReactivarBotonesDesactivados_Punnet()
+    {
+        // Reactivar todos los botones guardados en la lista de botones desactivados
+        foreach (GameObject boton in botonesDesactivados_punnet)
+        {
+            boton.SetActive(true);
+        }
+        boton5050_punnet.SetActive(true);
+        // Limpiar la lista después de reactivar los botones
+        botonesDesactivados_punnet.Clear();
+    }
+
+    public void PanelInformacion()
+    {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
+        if (panelInfo.activeSelf)
+        {
+            panelInfo.SetActive(false);
+        }
+        else
+        {
+            panelInfo.SetActive(true);
+        }
     }
 }

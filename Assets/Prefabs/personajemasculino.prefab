@@ -7565,7 +7565,7 @@ MonoBehaviour:
   matrazArma: {fileID: 2575475477582433644, guid: 025aa29a52415734b874c1406e8edecc, type: 3}
   puntoLanzamiento: {fileID: 4241119976276995183}
   fuerzaLanzamiento: 15
-  vidaMaxima: 4
+  vidaMaxima: 8
   vidaActual: 0
   muerte: 0
 --- !u!136 &6044047807468190116

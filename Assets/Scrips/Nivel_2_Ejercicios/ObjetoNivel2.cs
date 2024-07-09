@@ -8,6 +8,7 @@ public class ObjetoNivel2 : MonoBehaviour
     public int tipo;
     public string pregunta;
     public string detalles;
+    public string informacion;
     public string[] opciones = new string[4];
     public int opcionCorrecta;
     Color colorOriginalBoton;
@@ -24,9 +25,12 @@ public class ObjetoNivel2 : MonoBehaviour
             if (tipo == 1)// 1 "Selección Múltiple"
             {
                 Nivel_Ejercicio_Manager.Instance.preguntaUi_SeleccionMultiple.SetActive(true); // Si es de tipo Seleccion Multiple activar esta
-                Nivel_Ejercicio_Manager.Instance.ReactivarBotonesDesactivados();                                                                              //Sino, activar una interfase.
+                Nivel_Ejercicio_Manager.Instance.ReactivarBotonesDesactivados();                                 //Sino, activar una interfase.
+                Nivel_Ejercicio_Manager.Instance.ReactivarBotonesDesactivados_Punnet();                                 //Sino, activar una interfase.
                 Nivel_Ejercicio_Manager.Instance.tmpPregunta_SeleccionMultiple.text = pregunta;
                 Nivel_Ejercicio_Manager.Instance.tmpDetalles_SeleccionMultiple.text = detalles;
+                Nivel_Ejercicio_Manager.Instance.tmpInformacion.text = informacion;
+                //XXXXXXXXX Agregar aqui la info que recibiremos de la appi con la informacion. Pasarla al ejerciciomanager.
 
                 //Setear botones
                 for (int i = 0; i < opciones.Length; i++)
@@ -39,6 +43,7 @@ public class ObjetoNivel2 : MonoBehaviour
 
                 Nivel_Ejercicio_Manager.Instance.tmpPregunta_Punnett.text = pregunta;
                 Nivel_Ejercicio_Manager.Instance.tmpDetalles_Punnettt.text = detalles;
+                Nivel_Ejercicio_Manager.Instance.tmpInformacion.text = informacion;
 
                 //Setear botones
                 for (int i = 0; i < opciones.Length; i++)

@@ -14,8 +14,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void Awake()
     {
-        tmpObjeto = GetComponentInChildren<TextMeshProUGUI>();
-        textoObjeto = tmpObjeto.text;
+        //tmpObjeto = GetComponentInChildren<TextMeshProUGUI>();
+        //textoObjeto = tmpObjeto.text;
         
         canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
@@ -26,7 +26,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Funcion evento cuado se comienza a arrastrar.
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        tmpObjeto = GetComponentInChildren<TextMeshProUGUI>();
+        textoObjeto = tmpObjeto.text;
+
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }

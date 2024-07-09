@@ -49,6 +49,10 @@ public class PanelOpciones : MonoBehaviour
     [SerializeField] Toggle media;
     [SerializeField] Toggle rapida;
 
+    //Ayuda al apuntar
+
+    public bool ayudaAlApuntar = true;
+
     private void Start()
     {
         velocidadVirus = 3f;
@@ -151,5 +155,10 @@ public class PanelOpciones : MonoBehaviour
         nivelConceptos_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_1_Conceptos");
         nivelEjercicios_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_2_Ejercicios");
         nivelEvaluacion_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_3_Evaluacion");
+    }
+
+    public void AyudaAlApuntar()
+    {
+        ayudaAlApuntar = !ayudaAlApuntar;
     }
 }

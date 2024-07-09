@@ -49,9 +49,12 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     [SerializeField] TextMeshProUGUI tmpPergaminos;
     [SerializeField] TextMeshProUGUI tmpVirus;
 
-    
+    GameObject curva;
+
+
     private void Start()
     {
+        curva = GameObject.Find("Curva");
         StartCoroutine(SetearDescripcionPapiros());
     }
 
@@ -59,7 +62,19 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     {
         tmpPergaminos.text = pergaminosRecolectados.ToString() + " /10";
         tmpVirus.text = virusMatados.ToString();
-       
+        AyudaALApuntar();
+    }
+
+    public void AyudaALApuntar()
+    {
+        if (PanelOpciones.instance.ayudaAlApuntar && curva != null)
+        {
+            curva.SetActive(true);
+        }
+        else
+        {
+            curva.SetActive(false);
+        }
     }
 
     //Esta coorrunita espera hasta que los conceptos esten cargados para ir a buscar
