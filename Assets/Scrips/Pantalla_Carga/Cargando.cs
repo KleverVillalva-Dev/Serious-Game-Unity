@@ -24,7 +24,7 @@ public class Cargando : MonoBehaviour
         {
             if (operacion.progress >= 0.9f)
             {
-                texto.text = "Presiona para continuar...";
+                texto.text = "Presione para continuar...";
                 // Muestra un mensaje en la consola para verificar la progresión
                 Debug.Log("Nivel cargado al 90%, esperando activación");
 

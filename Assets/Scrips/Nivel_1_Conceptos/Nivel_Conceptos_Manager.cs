@@ -6,11 +6,11 @@ using static GetDatos;
 
 public class Nivel_Conceptos_Manager : MonoBehaviour
 {
-    #region Singletone
+    #region Singleton
     public static Nivel_Conceptos_Manager Instance;
     private void Awake()
     {
-        //Instanciar jugador dependiendo de seleccion
+        //Instanciar jugador dependiendo de selección
         personajePrefab[GameManager.instance.personajeSeleccionado].SetActive(true);
 
         if (Instance != null)
@@ -23,6 +23,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
         }
     }
     #endregion
+
     //Respetar pos 0 mujer, pos 1 hombre
     [SerializeField] GameObject[] personajePrefab; // Instanciado desde awake
     [SerializeField] Transform posInstanciarJugador;
@@ -34,7 +35,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     [SerializeField] private GameObject pergaminoPrefab;
     [SerializeField] private Transform[] posPergaminos;
 
-    public Conceptos[] diezConceptos = new Conceptos[10]; //Estos se deben mantener para la evaluacion.
+    public Conceptos[] diezConceptos = new Conceptos[10]; //Estos se deben mantener para la evaluación.
 
     private string[] tituloPapiros = new string[10];
     private string[] descripcionPapiros = new string[10];
@@ -50,7 +51,6 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     [SerializeField] TextMeshProUGUI tmpVirus;
 
     GameObject curva;
-
 
     private void Start()
     {
@@ -77,8 +77,8 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
         }
     }
 
-    //Esta coorrunita espera hasta que los conceptos esten cargados para ir a buscar
-    // los 10 aleatorios elegidos en GetDatos y preparar la informacion para los papiros.
+    //Esta coroutine espera hasta que los conceptos estén cargados para ir a buscar
+    // los 10 aleatorios elegidos en GetDatos y preparar la información para los papiros.
     IEnumerator SetearDescripcionPapiros()
     {
         while (!GetDatos.instance.conceptosCargados)
@@ -93,8 +93,8 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
 
         for (int i = 0; i < diezConceptos.Length; i++)
         {
-            tituloPapiros[i]      = diezConceptos[i].titulo;
-            descripcionPapiros[i] = diezConceptos[i].descripcion;           
+            tituloPapiros[i] = diezConceptos[i].titulo;
+            descripcionPapiros[i] = diezConceptos[i].descripcion;
         }
         InstanciarPapiro();
     }
@@ -102,7 +102,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     private void InstanciarPapiro()
     {
         for (int i = 0; i < posPergaminos.Length; i++)
-        {         
+        {
             pergaminoPrefab.GetComponent<Pergaminos>().descripcion = descripcionPapiros[i];
             pergaminoPrefab.GetComponent<Pergaminos>().titulo = tituloPapiros[i];
 
@@ -122,7 +122,7 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
 
         if (pergaminosRecolectados == 10)
         {
-            //Corrutina para pasar al siguiente nivel
+            //Coroutine para pasar al siguiente nivel
             StartCoroutine(NivelConceptosSuperado());
         }
     }
@@ -142,17 +142,19 @@ public class Nivel_Conceptos_Manager : MonoBehaviour
     {
         GameManager.instance.nivel_Conceptos_Superado = true;
         Debug.Log("10 pergaminos recolectados pasando de nivel");
+        // Guardar el progreso del nivel
+        GameProgress.SetLevelCompleted("Conceptos");
+
         //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
-        //Si hay musica reproducir
+        //Si hay música reproducir
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_NivelSuperado);
 
         GameManager.instance.JuegoEnPausa = true; //Pausar juego para que no lo elimine un enemigo
         yield return new WaitForSeconds(5);
 
-        //Aqui puedo implementar logica para guardar los datos del nivel si es necesario.
+        //Aquí puedo implementar lógica para guardar los datos del nivel si es necesario.
         GameManager.instance.concepos_VirusEliminados += virusMatados;
         GameManager.instance.conceptos_Intentos++;
-
 
         GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
         GameManager.instance.indexTextoAntagonista = 0;

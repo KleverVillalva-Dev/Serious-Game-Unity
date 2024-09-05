@@ -14,8 +14,17 @@ public class MenuPrincipal : MonoBehaviour
     [SerializeField] string[] nombrePersonaje;
     [SerializeField] string[] rolPersonaje;
     [SerializeField] string[] descripcionPersonaje;
-    
-    //Activa o desactiva selector
+
+    //Boton de información
+    [SerializeField] GameObject botonInformacion;
+
+    private void Awake()
+    {
+        // Llamar al método para reiniciar el progreso
+        ResetearProgreso();
+    }
+
+    // Activa o desactiva selector
     public void SelectorPersonaje()
     {
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
@@ -23,7 +32,8 @@ public class MenuPrincipal : MonoBehaviour
         {
             canvasSeleccionPersonaje.SetActive(true);
             SeleccionarGeneroInt(0);
-        }else
+        }
+        else
         {
             canvasSeleccionPersonaje.SetActive(false);
         }
@@ -32,12 +42,12 @@ public class MenuPrincipal : MonoBehaviour
     public void ActivarTick(GameObject check)
     {
         check.SetActive(true);
-        // Esta porcion de codigo es unicamente para desactivar el otro check cuando seleccionamos uno
+        // Esta porción de código es únicamente para desactivar el otro check cuando seleccionamos uno
 
         // Obtener todos los objetos en la escena con el mismo tag
         #region Desactivar el otro check
         GameObject[] objetosConMismoNombre = GameObject.FindGameObjectsWithTag(check.tag);
-     
+
         int contador = 0;
 
         // Recorrer todos los objetos encontrados
@@ -71,7 +81,6 @@ public class MenuPrincipal : MonoBehaviour
         descripcionPersonajeTMP.text = descripcionPersonaje[genero];
     }
 
-
     public void BotonJugar()
     {
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
@@ -82,13 +91,11 @@ public class MenuPrincipal : MonoBehaviour
             //Carga_Nivel.Nivel_A_Cargar("Nivel_1_Conceptos");
             //Carga_Nivel.Nivel_A_Cargar("Nivel_2_Ejercicios");
             Carga_Nivel.Nivel_A_Cargar("SelectorDeNivel");
-            
         }
         else
         {
             Debug.Log("No se pudo obtener ejercicios de la base de datos");
         }
-
     }
 
     public void BotonCerrarJuego()
@@ -98,4 +105,10 @@ public class MenuPrincipal : MonoBehaviour
         Application.Quit();
     }
 
+    // Método para resetear el progreso del juego
+    private void ResetearProgreso()
+    {
+        GameReset.ResetProgress();
+        Debug.Log("Progreso del juego reseteado");
+    }
 }

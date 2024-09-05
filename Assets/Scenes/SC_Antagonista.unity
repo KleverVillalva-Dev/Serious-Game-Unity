@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4440221, g: 0.49316514, b: 0.5722316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -261,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 29.9188}
-  m_SizeDelta: {x: 1136.4424, y: 687.1028}
+  m_AnchoredPosition: {x: -259, y: -4.4752}
+  m_SizeDelta: {x: 1075.3689, y: 678.7961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159998149
 MonoBehaviour:
@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41c67a8151a39c14298962936da273d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.76
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41c67a8151a39c14298962936da273d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -905,31 +905,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.82
+      value: 5.295781
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.63
+      value: -3.6999998
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.777919
+      value: -2.7749372
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.34202018
+      value: 0.18955441
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9396926
+      value: -0.9818703
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -937,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -140
+      value: -158.146
       objectReference: {fileID: 0}
     - target: {fileID: 4375409058695352207, guid: 541ee6901b1dd4b438e8fd439ff11adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1642,8 +1642,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.5609, y: 5.1216}
-  m_SizeDelta: {x: 1047.5159, y: 584.9607}
+  m_AnchoredPosition: {x: 21.136482, y: 5.2615}
+  m_SizeDelta: {x: 1029.3599, y: 611.4225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107515919
 MonoBehaviour:

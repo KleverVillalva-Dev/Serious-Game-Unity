@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GetDatos;
 
 public class Nivel_Ejercicio_Manager : MonoBehaviour
 {
-    #region Singletone
+    #region Singleton
     public static Nivel_Ejercicio_Manager Instance;
     private void Awake()
     {
@@ -27,7 +26,8 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         }
     }
     #endregion
-    //Respetar pos 0 mujer, pos 1 hombre
+
+    // Respetar pos 0 mujer, pos 1 hombre
     [SerializeField] GameObject[] personajePrefab; // Instanciado desde awake
     [SerializeField] Transform posInstanciarJugador;
 
@@ -36,16 +36,16 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     [SerializeField] GameObject personajeMasculino;
 
     [Header("Seccion para el UI en Seleccion Multiple")]
-    [SerializeField] public GameObject preguntaUi_SeleccionMultiple; // Se activa para mostrar info, desde el objeto al tocarlo
+    [SerializeField] public GameObject preguntaUi_SeleccionMultiple;
     [SerializeField] public GameObject preguntaUi_Punnett;
     [SerializeField] public TextMeshProUGUI tmpPregunta_SeleccionMultiple;
     [SerializeField] public TextMeshProUGUI tmpDetalles_SeleccionMultiple;
     [SerializeField] public TextMeshProUGUI[] textoRespuestas_opciones;
 
-    [SerializeField] public GameObject[] botonesRespuestas_OpcionesMultiples; //Seteada la funcion correcta desde el objeto recolectable
-    public string opcionCorrectaEnBoton; /// XXXXXXX texto para comparar opcion correcta entre los botones.
+    [SerializeField] public GameObject[] botonesRespuestas_OpcionesMultiples;
+    public string opcionCorrectaEnBoton;
 
-    public string opcionCorrectaEnBoton_punnet; /// XXXXXXX texto para comparar opcion correcta entre los botones.
+    public string opcionCorrectaEnBoton_punnet;
 
     [SerializeField] public GameObject boton5050;
     [SerializeField] public GameObject boton5050_punnet;
@@ -55,15 +55,12 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI tmpDetalles_Punnettt;
     [SerializeField] public TextMeshProUGUI[] textoRespuestas_Punnett;
 
-    [SerializeField] public GameObject[] botonesRespuestas_OpcionesPunnet; //Seteada la funcion correcta desde el objeto recolectable
-
+    [SerializeField] public GameObject[] botonesRespuestas_OpcionesPunnet;
     [SerializeField] public TextMeshProUGUI[] posMatriz;
 
     [Header("UI pergaminos y virus")]
     public int objetoRecolectableAgarrado;
     public int virusMatados;
-
-    /// ----------------------------------------------------------------------------
 
     [SerializeField] TextMeshProUGUI tmpPergaminos;
     [SerializeField] TextMeshProUGUI tmpVirus;
@@ -80,10 +77,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     string[] cuatroOpciones = new string[4];
 
-    /// <summary>
-    /// Variables locales utilidad
-    /// </summary>
-    /// 
     bool botonPrecionado = false;
     int respuestasIncorrectas;
     int respuestasIncorrectas3OpcionesYSeReinicia;
@@ -92,7 +85,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     [SerializeField] GameObject panelInfo;
     [SerializeField] public TextMeshProUGUI tmpInformacion;
-
 
     private void Start()
     {
@@ -106,6 +98,7 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         StartCoroutine(SetearInformacionObjetoLVL2());
         ResetearTextoMatriz();
     }
+
     private void Update()
     {
         tmpPergaminos.text = objetoRecolectableAgarrado.ToString() + " /10";
@@ -138,16 +131,13 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         {
             diezEjercicios[i] = GameManager.instance.diezEjerciciosNivel2[i];
 
-            // MODIF
             tipoTxt[i] = diezEjercicios[i].tipo;
             preguntaTxt[i] = diezEjercicios[i].pregunta;
             detallesTxt[i] = diezEjercicios[i].detalles;
             informacion[i] = diezEjercicios[i].explicacion_solucion;
 
-            // Preparar un string para almacenar todas las opciones
             string opcionesDebug = $"Opciones para diezEjercicios[{i}]: ";
 
-            // Añadir comprobación de límites
             for (int j = 0; j < cuatroOpciones.Length; j++)
             {
                 if (j < diezEjercicios[i].opcionesMultiples.Length)
@@ -157,22 +147,18 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 else
                 {
                     Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
-                    cuatroOpciones[j] = "Opción no disponible"; // o algún valor por defecto
+                    cuatroOpciones[j] = "Opción no disponible";
                 }
 
-                // Añadir cada opción al string de depuración
                 opcionesDebug += $"[{j}] {cuatroOpciones[j]} ";
             }
 
-            // Mostrar todas las opciones en un solo mensaje de depuración
             Debug.Log(opcionesDebug);
-
         }
 
         InstanciarObjeto();
     }
 
-    #region Instanciar objeto v2
     private void InstanciarObjeto()
     {
         for (int i = 0; i < posObjetos.Length; i++)
@@ -181,26 +167,22 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
             ObjetoNivel2 objetoNivel2 = obj.GetComponent<ObjetoNivel2>();
 
-            // MODIF
             objetoNivel2.tipo = tipoTxt[i];
             objetoNivel2.pregunta = preguntaTxt[i];
             objetoNivel2.detalles = detallesTxt[i];
             objetoNivel2.informacion = informacion[i];
 
-            // Verificación de límites y mensajes de depuración
             if (diezEjercicios[i].opcionesMultiples.Length < 4)
             {
                 Debug.LogWarning($"diezEjercicios[{i}].opcionesMultiples tiene menos de 4 opciones.");
             }
 
-            // Asignar las opciones para cada instancia
             for (int j = 0; j < cuatroOpciones.Length; j++)
             {
                 if (j < diezEjercicios[i].opcionesMultiples.Length)
                 {
                     objetoNivel2.opciones[j] = diezEjercicios[i].opcionesMultiples[j].texto_opcion;
 
-                    // Enviarle info al objeto de cual es la correcta
                     if (diezEjercicios[i].opcionesMultiples[j].es_correcta)
                     {
                         objetoNivel2.opcionCorrecta = j;
@@ -212,17 +194,13 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 }
             }
 
-            // Mensaje de depuración para verificar las opciones asignadas
             string opcionesDebug = $"Opciones para objetoNivel2 en posObjetos[{i}]: ";
             for (int j = 0; j < objetoNivel2.opciones.Length; j++)
             {
                 opcionesDebug += $"[{j}] {objetoNivel2.opciones[j]} ";
             }
-            //Debug.Log(opcionesDebug);
         }
     }
-    #endregion
-
 
     public void RespuestaCorrecta(Button boton)
     {
@@ -232,12 +210,10 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
             Debug.Log("RespuestaCorrecta");
 
-            // Cambiar color del botón correcto
             boton.GetComponent<Image>().color = Color.green;
 
             AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaCorrecta);
 
-            // Dar feedback al jugador y sumar puntos
             StartCoroutine(RCorrecta_Corrutina());
             RevisarSiAgarre10();
         }
@@ -250,9 +226,8 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             botonPrecionado = true;
             Debug.Log("Respuesta Incorrecta");
             AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_RespuestaIncorrecta);
-            // Cambiar color del botón incorrecto
-            // Aqui
-            string hexColor = "#C33C3C";//Color seteado incorrecto
+
+            string hexColor = "#C33C3C";
             Color color;
             if (ColorUtility.TryParseHtmlString(hexColor, out color))
             {
@@ -270,7 +245,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     IEnumerator Respuesta_Incorrecta()
     {
-        //hacer anim de derrota
         if (personajeFemenino.activeSelf)
         {
             Animator animator = personajeFemenino.GetComponent<Animator>();
@@ -282,9 +256,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             animator.SetTrigger("Error");
         }
 
-        //Reproducir sonido si hay
-
-        //No sumar puntos, o guardar el error.
         respuestasIncorrectas++;
         respuestasIncorrectas3OpcionesYSeReinicia++;
 
@@ -294,20 +265,17 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        //Tiempo para apreciar el feedback
         yield return new WaitForSeconds(4);
-        //Cerrar panel abierto
         preguntaUi_Punnett.SetActive(false);
         preguntaUi_SeleccionMultiple.SetActive(false);
         AudioManager.instance.DetenerMusicaEspecial();
-        //Restablecer variable
         ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
+
     IEnumerator RCorrecta_Corrutina()
     {
-        //hacer anim de victoria
         if (personajeFemenino.activeSelf)
         {
             Animator animator = personajeFemenino.GetComponent<Animator>();
@@ -319,21 +287,15 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             animator.SetTrigger("Bailar");
         }
 
-        //Reproducir sonido si hay
-
-        //Sumar puntos
-
-        //Tiempo para apreciar el feedback
         yield return new WaitForSeconds(4);
-        //Cerrar panel abierto
         preguntaUi_Punnett.SetActive(false);
         preguntaUi_SeleccionMultiple.SetActive(false);
         AudioManager.instance.DetenerMusicaEspecial();
-        //Restablecer variable
         ResetearTextoMatriz();
         GameManager.instance.JuegoEnPausa = false;
         botonPrecionado = false;
     }
+
     public void RevisarSiAgarre10()
     {
         if (objetoRecolectableAgarrado == 10)
@@ -344,25 +306,22 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
 
     IEnumerator NivelEjerciciosSuperado()
     {
-        GameManager.instance.nivel_Ejercicios_Superado= true;
+        GameManager.instance.nivel_Ejercicios_Superado = true;
         Debug.Log("10 objetos recolectados pasando de nivel");
-        //Esperar 5 segundos o el tiempo necesario antes de pasar a la siguiente escena.
-        //Si hay musica reproducir
-        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_NivelSuperado);
-        GameManager.instance.JuegoEnPausa = true; //Pausar juego para que no lo elimine un enemigo
-        yield return new WaitForSeconds(5);
+        GameProgress.SetLevelCompleted("Ejercicios");
 
-        //Aqui puedo implementar logica para guardar los datos del nivel si es necesario.
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_NivelSuperado);
+        GameManager.instance.JuegoEnPausa = true;
+        yield return new WaitForSeconds(5);
 
         GameManager.instance.ejercicios_VirusEliminados += virusMatados;
         GameManager.instance.ejercicios_RespuestasIncorrectas += respuestasIncorrectas;
         GameManager.instance.ejercicios_Intentos++;
 
-        GameManager.instance.JuegoEnPausa = false; //Despausar y continuar.
+        GameManager.instance.JuegoEnPausa = false;
         Carga_Nivel.Nivel_A_Cargar("SC_Antagonista");
         GameManager.instance.indexTextoAntagonista = 1;
     }
-
 
     public void ReiniciarEscena()
     {
@@ -383,13 +342,21 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
         }
     }
 
+    public void PanelInformacion()
+    {
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
+        if (panelInfo.activeSelf)
+        {
+            panelInfo.SetActive(false);
+        }
+        else
+        {
+            panelInfo.SetActive(true);
+        }
+    }
 
-
-    //Comodin 50% 
-
-
-    public List<GameObject> botonesDesactivados = new List<GameObject>(); // Lista para guardar los botones desactivados
-    public List<GameObject> botonesDesactivados_punnet = new List<GameObject>(); // Lista para guardar los botones desactivados
+    public List<GameObject> botonesDesactivados = new List<GameObject>();
+    public List<GameObject> botonesDesactivados_punnet = new List<GameObject>();
 
     private GameObject EncontrarBotonCorrecto()
     {
@@ -426,7 +393,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             return;
         }
 
-        // Crear una lista con los botones incorrectos.
         List<GameObject> botonesIncorrectos = new List<GameObject>();
         foreach (GameObject boton in botonesRespuestas_OpcionesMultiples)
         {
@@ -436,7 +402,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             }
         }
 
-        // Desactivar dos botones incorrectos al azar.
         for (int i = 0; i < 2; i++)
         {
             if (botonesIncorrectos.Count > 0)
@@ -444,12 +409,12 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 int index = UnityEngine.Random.Range(0, botonesIncorrectos.Count);
                 GameObject botonIncorrecto = botonesIncorrectos[index];
                 botonIncorrecto.SetActive(false);
-                botonesDesactivados.Add(botonIncorrecto); // Guardar referencia al botón desactivado
+                botonesDesactivados.Add(botonIncorrecto);
                 botonesIncorrectos.RemoveAt(index);
             }
         }
 
-        boton5050.SetActive(false); // Desactivar el botón de comodín
+        boton5050.SetActive(false);
     }
 
     public void DesactivarDosBotonesIncorrectos_Punnet()
@@ -461,7 +426,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             return;
         }
 
-        // Crear una lista con los botones incorrectos.
         List<GameObject> botonesIncorrectos = new List<GameObject>();
         foreach (GameObject boton in botonesRespuestas_OpcionesPunnet)
         {
@@ -471,7 +435,6 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
             }
         }
 
-        // Desactivar dos botones incorrectos al azar.
         for (int i = 0; i < 2; i++)
         {
             if (botonesIncorrectos.Count > 0)
@@ -479,47 +442,31 @@ public class Nivel_Ejercicio_Manager : MonoBehaviour
                 int index = UnityEngine.Random.Range(0, botonesIncorrectos.Count);
                 GameObject botonIncorrecto = botonesIncorrectos[index];
                 botonIncorrecto.SetActive(false);
-                botonesDesactivados_punnet.Add(botonIncorrecto); // Guardar referencia al botón desactivado
+                botonesDesactivados_punnet.Add(botonIncorrecto);
                 botonesIncorrectos.RemoveAt(index);
             }
         }
 
-        boton5050_punnet.SetActive(false); // Desactivar el botón de comodín
+        boton5050_punnet.SetActive(false);
     }
 
     public void ReactivarBotonesDesactivados()
     {
-        // Reactivar todos los botones guardados en la lista de botones desactivados
         foreach (GameObject boton in botonesDesactivados)
         {
             boton.SetActive(true);
         }
         boton5050.SetActive(true);
-        // Limpiar la lista después de reactivar los botones
         botonesDesactivados.Clear();
     }
+
     public void ReactivarBotonesDesactivados_Punnet()
     {
-        // Reactivar todos los botones guardados en la lista de botones desactivados
         foreach (GameObject boton in botonesDesactivados_punnet)
         {
             boton.SetActive(true);
         }
         boton5050_punnet.SetActive(true);
-        // Limpiar la lista después de reactivar los botones
         botonesDesactivados_punnet.Clear();
-    }
-
-    public void PanelInformacion()
-    {
-        AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
-        if (panelInfo.activeSelf)
-        {
-            panelInfo.SetActive(false);
-        }
-        else
-        {
-            panelInfo.SetActive(true);
-        }
     }
 }

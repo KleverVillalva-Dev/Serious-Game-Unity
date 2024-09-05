@@ -10,9 +10,9 @@ public class NavMeshScript : MonoBehaviour
     string tagJugador = "Player";
     void Start()
     {
-        //jugador = GameObject.FindWithTag(tagJugador).transform;
+        jugador = GameObject.FindWithTag(tagJugador).transform;
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(jugador.transform.position);
+        agent.SetDestination(jugador.position);
     }
 
 }

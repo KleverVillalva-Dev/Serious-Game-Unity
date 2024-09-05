@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4440221, g: 0.49316514, b: 0.5722316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1720,11 +1720,11 @@ PrefabInstance:
       objectReference: {fileID: -789001965, guid: 2dfbd56ffc63e3041a7fd272abd3435a, type: 3}
     - target: {fileID: 6094538743744572069, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 260
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 6094538743744572069, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 232
+      value: 234
       objectReference: {fileID: 0}
     - target: {fileID: 6094538743744572070, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_Sprite
@@ -1860,11 +1860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7366126747322954974, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 225
+      value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 7366126747322954974, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 190
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7366126747322954974, guid: 2d23e5ef9eebdbf41949c84df66734e4, type: 3}
       propertyPath: m_LocalScale.x
@@ -13996,6 +13996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9211847339651277458, guid: b1052c5956372b74782886c00a3c25cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -18205,6 +18209,10 @@ PrefabInstance:
       value: personajemasculino
       objectReference: {fileID: 0}
     - target: {fileID: 8369273504379767548, guid: ae94e0c4e3363474ba4b95eb282da486, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698281926272512467, guid: ae94e0c4e3363474ba4b95eb282da486, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class PanelOpciones : MonoBehaviour
 {
     public static PanelOpciones instance;
+
     private void Awake()
     {
         if (instance != null)
         {
             Destroy(gameObject);
-        }else
+        }
+        else
         {
             instance = this;
         }
@@ -36,7 +38,7 @@ public class PanelOpciones : MonoBehaviour
 
     //Panel Informacion
     [SerializeField] GameObject panelInformacion;
-
+    [SerializeField] GameObject botonInformacion; // Referencia al botón de información
 
     //Velocidad virus
     public float velocidadVirus_Lenta = 1.5f;
@@ -50,13 +52,19 @@ public class PanelOpciones : MonoBehaviour
     [SerializeField] Toggle rapida;
 
     //Ayuda al apuntar
-
     public bool ayudaAlApuntar = true;
 
     private void Start()
     {
         velocidadVirus = 3f;
+        VerificarBotonInformacion();
     }
+
+    private void OnEnable()
+    {
+        VerificarBotonInformacion();
+    }
+
     public void VelocidadVirus(float velocidad)
     {
         velocidadVirus = velocidad;
@@ -76,7 +84,7 @@ public class PanelOpciones : MonoBehaviour
     {
         minimapCiudad.SetActive(SceneManager.GetActiveScene().name == "Nivel_1_Conceptos");
         minimapLab.SetActive(SceneManager.GetActiveScene().name == "Nivel_2_Ejercicios");
-        botonVolverMenu.SetActive(SceneManager.GetActiveScene().name != "MenúPrincipal");     
+        botonVolverMenu.SetActive(SceneManager.GetActiveScene().name != "MenúPrincipal");
 
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
         if (panelOpciones.gameObject.activeSelf)
@@ -91,7 +99,6 @@ public class PanelOpciones : MonoBehaviour
         }
     }
 
-    //Abrir panel
     public void BotonVolverMenuAbreYCierra()
     {
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
@@ -104,8 +111,6 @@ public class PanelOpciones : MonoBehaviour
             panelConfirmacion.SetActive(true);
         }
     }
-
-    //Boton salir al menu principal
 
     public void BotonSiSalir()
     {
@@ -131,30 +136,60 @@ public class PanelOpciones : MonoBehaviour
         SceneManager.LoadScene("MenúPrincipal");
     }
 
-
     [SerializeField] GameObject menuPrincipalExplicacionBotones;
+    [SerializeField] GameObject seleccionNivelExplicacion;
     [SerializeField] GameObject nivelConceptos_Explicacion;
     [SerializeField] GameObject nivelEjercicios_Explicacion;
     [SerializeField] GameObject nivelEvaluacion_Explicacion;
+
     public void ActivarInformacion()
     {
         AudioManager.instance.ReproducirSonido(AudioManager.instance.sfx_BotonMenu);
-        if (panelInformacion.gameObject.activeSelf)
+        if (panelInformacion != null && panelInformacion.gameObject.activeSelf)
         {
             GameManager.instance.JuegoEnPausa = false;
             panelInformacion.gameObject.SetActive(false);
         }
-        else
+        else if (panelInformacion != null)
         {
             GameManager.instance.JuegoEnPausa = true;
             panelInformacion.gameObject.SetActive(true);
         }
 
+        if (menuPrincipalExplicacionBotones != null)
+            menuPrincipalExplicacionBotones.SetActive(SceneManager.GetActiveScene().name == "MenúPrincipal");
 
-        menuPrincipalExplicacionBotones.SetActive(SceneManager.GetActiveScene().name == "MenúPrincipal");
-        nivelConceptos_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_1_Conceptos");
-        nivelEjercicios_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_2_Ejercicios");
-        nivelEvaluacion_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_3_Evaluacion");
+        if (seleccionNivelExplicacion != null)
+            seleccionNivelExplicacion.SetActive(SceneManager.GetActiveScene().name == "SelectorDeNivel");
+
+        if (nivelConceptos_Explicacion != null)
+            nivelConceptos_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_1_Conceptos");
+
+        if (nivelEjercicios_Explicacion != null)
+            nivelEjercicios_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_2_Ejercicios");
+
+        if (nivelEvaluacion_Explicacion != null)
+            nivelEvaluacion_Explicacion.SetActive(SceneManager.GetActiveScene().name == "Nivel_3_Evaluacion");
+    }
+
+    private void VerificarBotonInformacion()
+    {
+        // Verificar si el botón de información está asignado y si está en la escena
+        if (botonInformacion == null)
+        {
+            Debug.LogError("El botón de información no ha sido asignado en el inspector.");
+            return;
+        }
+
+        // Desactivar el botón de información si estás en la escena de selección de nivel
+        if (SceneManager.GetActiveScene().name == "SelectorDeNivel")
+        {
+            botonInformacion.SetActive(false); // Simplemente desactivarlo en lugar de eliminarlo
+        }
+        else
+        {
+            botonInformacion.SetActive(true); // Re-activarlo en otras escenas
+        }
     }
 
     public void AyudaAlApuntar()
